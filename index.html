@@ -3,87 +3,406 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>VerbumTechnologies</title>
+  <title>VerbumTechnologies | AI Research Initiative</title>
+  <meta name="description" content="VerbumTechnologies - Collaborative exploration of Artificial Intelligence and fundamental theory under Litchfield Capital Corporation">
+  
   <style>
-    body {
-      font-family: sans-serif;
+    :root {
+      --primary-blue: #003366;
+      --accent-blue: #0066cc;
+      --light-blue: #e8f4fd;
+      --neutral-bg: #f8fafc;
+      --neutral-light: #e2e8f0;
+      --text-primary: #1a202c;
+      --text-secondary: #4a5568;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.7;
+      color: var(--text-primary);
+      background: linear-gradient(135deg, var(--neutral-bg) 0%, #ffffff 100%);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
       padding: 2rem;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.6;
-      background: #f4f4f4;
     }
-    h1 {
-      color: #003366;
+
+    .header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 2rem 0;
     }
-    .protected {
-      margin-top: 2rem;
-      padding: 1rem;
-      background: #e6e6e6;
-      border: 1px solid #999;
+
+    .logo {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.025em;
+      background: linear-gradient(90deg, 
+        #ff0000 0%,     /* Red */
+        #ff8000 14.3%,  /* Orange */
+        #ffff00 28.6%,  /* Yellow */
+        #80ff00 42.9%,  /* Yellow-Green */
+        #00ff00 57.1%,  /* Green */
+        #00ff80 71.4%,  /* Blue-Green */
+        #00ffff 85.7%,  /* Cyan */
+        #0080ff 100%    /* Blue */
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      position: relative;
+      display: inline-block;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      background-color: white;
     }
-    .footer {
-      margin-top: 3rem;
-      font-size: 0.9rem;
-      color: #555;
+
+    /* Fallback for browsers that don't support background-clip: text */
+    @supports not (-webkit-background-clip: text) {
+      .logo {
+        color: var(--primary-blue);
+        background-color: white;
+      }
     }
-    a {
-      color: #0066cc;
+
+    .tagline {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+
+    .main-content {
+      background: white;
+      border-radius: 12px;
+      padding: 2.5rem;
+      box-shadow: var(--shadow);
+      margin-bottom: 2rem;
+      border: 1px solid rgba(0, 51, 102, 0.1);
+    }
+
+    .intro-section {
+      margin-bottom: 2rem;
+    }
+
+    .company-link {
+      color: var(--accent-blue);
       text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      transition: border-bottom-color 0.2s;
     }
-    #private-content {
+
+    .company-link:hover {
+      border-bottom-color: var(--accent-blue);
+    }
+
+    .highlight-box {
+      background: var(--light-blue);
+      border-left: 4px solid var(--primary-blue);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .research-areas {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .research-tag {
+      background: linear-gradient(90deg, 
+        #ff0000 0%,     /* Red */
+        #ff8000 14.3%,  /* Orange */
+        #ffff00 28.6%,  /* Yellow */
+        #80ff00 42.9%,  /* Yellow-Green */
+        #00ff00 57.1%,  /* Green */
+        #00ff80 71.4%,  /* Blue-Green */
+        #00ffff 85.7%,  /* Cyan */
+        #0080ff 100%    /* Blue */
+      );
+      padding: 0.75rem 1rem;
+      border-radius: 20px;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: white;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .research-tag:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      filter: brightness(1.1);
+    }
+
+    /* Create different segments of the spectrum for each tag */
+    .research-tag:nth-child(1) {
+      background: linear-gradient(135deg, #ff0000, #ff8000);
+    }
+    .research-tag:nth-child(2) {
+      background: linear-gradient(135deg, #ff8000, #ffff00);
+    }
+    .research-tag:nth-child(3) {
+      background: linear-gradient(135deg, #ffff00, #80ff00);
+    }
+    .research-tag:nth-child(4) {
+      background: linear-gradient(135deg, #80ff00, #00ff00);
+    }
+    .research-tag:nth-child(5) {
+      background: linear-gradient(135deg, #00ff00, #00ffff);
+    }
+    .research-tag:nth-child(6) {
+      background: linear-gradient(135deg, #00ffff, #0080ff);
+    }
+
+    .protected-section {
+      background: linear-gradient(135deg, var(--neutral-light) 0%, #f1f5f9 100%);
+      border-radius: 12px;
+      padding: 2rem;
+      margin: 2rem 0;
+      border: 1px solid var(--neutral-light);
+    }
+
+    .protected-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .lock-icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 0.5rem;
+      fill: var(--primary-blue);
+    }
+
+    .access-button {
+      background: var(--primary-blue);
+      color: white;
+      border: none;
+      padding: 0.875rem 2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.95rem;
+    }
+
+    .access-button:hover {
+      background: #002244;
+      transform: translateY(-1px);
+      box-shadow: var(--shadow);
+    }
+
+    .private-content {
       display: none;
-      margin-top: 1rem;
-      padding: 1rem;
-      background-color: #fff;
-      border-left: 4px solid #003366;
+      margin-top: 1.5rem;
+      padding: 1.5rem;
+      background: white;
+      border-radius: 8px;
+      border-left: 4px solid var(--primary-blue);
+      box-shadow: var(--shadow);
+    }
+
+    .papers-section {
+      background: white;
+      border-radius: 12px;
+      padding: 2.5rem;
+      box-shadow: var(--shadow);
+      margin-bottom: 2rem;
+      border: 1px solid rgba(0, 51, 102, 0.1);
+    }
+
+    .section-title {
+      color: var(--primary-blue);
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .section-icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 0.5rem;
+      fill: var(--primary-blue);
+    }
+
+    .coming-soon {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-secondary);
+      font-style: italic;
+      background: var(--light-blue);
+      border-radius: 8px;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 2rem 0;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--neutral-light);
+      margin-top: 3rem;
+    }
+
+    .contact-link {
+      color: var(--accent-blue);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .contact-link:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 1rem;
+      }
+      
+      .main-content,
+      .papers-section {
+        padding: 1.5rem;
+      }
+      
+      .logo {
+        font-size: 2rem;
+      }
+      
+      .research-areas {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Animation for smooth reveals */
+    .fade-in {
+      animation: fadeIn 0.6s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header fade-in">
+      <h1 class="logo">VerbumTechnologies</h1>
+      <p class="tagline">Advancing AI Research Through Human-Machine Collaboration</p>
+    </header>
+
+    <main class="main-content fade-in">
+      <div class="intro-section">
+        <p>
+          <strong>VerbumTechnologies</strong> is a research initiative developed under the umbrella of
+          <a href="https://litchfieldcapitalcorporation.com" target="_blank" class="company-link">
+            Litchfield Capital Corporation
+          </a>.
+        </p>
+
+        <div class="highlight-box">
+          <p>
+            <strong>Our Mission:</strong> The collaborative exploration of Artificial Intelligence and fundamental theory through the partnership between human inquiry and language models, working together as co-investigators.
+          </p>
+        </div>
+
+        <p>
+          Our projects span multiple disciplines, creating new pathways for understanding and developing next-generation AI models.
+        </p>
+
+        <div class="research-areas">
+          <div class="research-tag">Linguistics</div>
+          <div class="research-tag">Machine Learning</div>
+          <div class="research-tag">Physics</div>
+          <div class="research-tag">Computation Theory</div>
+          <div class="research-tag">Philosophy of Mind</div>
+          <div class="research-tag">Cognitive Science</div>
+        </div>
+      </div>
+    </main>
+
+    <section class="papers-section fade-in">
+      <h2 class="section-title">
+        <svg class="section-icon" viewBox="0 0 24 24">
+          <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+        </svg>
+        Theoretical Papers
+      </h2>
+      <div class="coming-soon">
+        <p>Research publications and theoretical frameworks will be published here.</p>
+        <p><strong>Coming Soon</strong></p>
+      </div>
+    </section>
+
+    <div class="protected-section fade-in">
+      <div class="protected-header">
+        <svg class="lock-icon" viewBox="0 0 24 24">
+          <path d="M12,17A2,2 0 0,0 14,15C14,13.89 13.1,13 12,13A2,2 0 0,0 10,15A2,2 0 0,0 12,17M18,8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V10C4,8.89 4.9,8 6,8H7V6A5,5 0 0,1 12,1A5,5 0 0,1 17,6V8H18M12,3A3,3 0 0,0 9,6V8H15V6A3,3 0 0,0 12,3Z" />
+        </svg>
+        <strong>Private Workspace</strong>
+      </div>
+      <p style="margin-bottom: 1rem;">Internal R&D notes and collaborative prototypes for authorized researchers.</p>
+      <button class="access-button" onclick="checkPassword()">Access Protected Section</button>
+      
+      <div id="private-content" class="private-content">
+        <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">Welcome to the Research Workspace</h3>
+        <p>This section contains internal R&D notes and collaborative prototypes.</p>
+        <p>If you are not authorized, please email <a href="mailto:Paolo@VerbumTechnologies.com" class="contact-link">Paolo@VerbumTechnologies.com</a> for access.</p>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p>&copy; 2025 VerbumTechnologies. All rights reserved.</p>
+      <p>Contact: <a href="mailto:Paolo@VerbumTechnologies.com" class="contact-link">Paolo@VerbumTechnologies.com</a></p>
+    </footer>
+  </div>
+
   <script>
     function checkPassword() {
       const password = prompt("Enter password to access the private workspace:");
       if (password === "verbum2025") {
-        document.getElementById("private-content").style.display = "block";
+        const content = document.getElementById("private-content");
+        content.style.display = "block";
+        content.classList.add("fade-in");
       } else if (password !== null) {
         alert("Incorrect password. Please contact Paolo for access.");
       }
     }
+
+    // Add subtle animation on load
+    document.addEventListener('DOMContentLoaded', function() {
+      const elements = document.querySelectorAll('.fade-in');
+      elements.forEach((el, index) => {
+        el.style.animationDelay = `${index * 0.1}s`;
+      });
+    });
   </script>
-</head>
-<body>
-
-  <h1>VerbumTechnologies</h1>
-
-  <p>
-    <strong>VerbumTechnologies</strong> is a research initiative developed under the umbrella of
-    <a href="https://litchfieldcapitalcorporation.com" target="_blank">
-      Litchfield Capital Corporation
-    </a>.
-  </p>
-
-  <p>
-    The central theme of VerbumTechnologies is the collaborative exploration of Artificial Intelligence and fundamental theory.
-    Projects span linguistics, machine learning, physics, computation and the philosophy of computation. We seek to understand and develop new models of AI. 
-  </p>
-
-  <p>
-    The engine of this initiative is a partnership between human inquiry and language models, working together as co-investigators.
-  </p>
-
-  <div class="protected">
-    <strong>Private Workspace</strong><br/>
-    <button onclick="checkPassword()">Enter Protected Section</button>
-    <div id="private-content">
-      <p>This section contains internal R&D notes and collaborative prototypes.</p>
-      <p>If you are not authorized, please email <a href="mailto:Paolo@VerbumTechnologies.com">Paolo@VerbumTechnologies.com</a> for access.</p>
-    </div>
-  </div>
-
-  <div class="footer">
-    &copy; 2025 VerbumTechnologies. All rights reserved.
-  </div>
-
 </body>
 </html>
