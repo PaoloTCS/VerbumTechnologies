@@ -2,12 +2,88 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>VerbumTechnologies</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 2rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+      background: #f4f4f4;
+    }
+    h1 {
+      color: #003366;
+    }
+    .protected {
+      margin-top: 2rem;
+      padding: 1rem;
+      background: #e6e6e6;
+      border: 1px solid #999;
+    }
+    .footer {
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+    #private-content {
+      display: none;
+      margin-top: 1rem;
+      padding: 1rem;
+      background-color: #fff;
+      border-left: 4px solid #003366;
+    }
+  </style>
+  <script>
+    function checkPassword() {
+      const password = prompt("Enter password to access the private workspace:");
+      if (password === "verbum2025") {
+        document.getElementById("private-content").style.display = "block";
+      } else if (password !== null) {
+        alert("Incorrect password. Please contact Paolo for access.");
+      }
+    }
+  </script>
 </head>
 <body>
-  <h1>Welcome to VerbumTechnologies</h1>
-  <p>This site is hosted on Cloudflare Pages and deployed from GitHub. This page will be updated soon.</p>
+
+  <h1>VerbumTechnologies</h1>
+
+  <p>
+    <strong>VerbumTechnologies</strong> is a research initiative developed under the umbrella of
+    <a href="https://litchfieldcapitalcorporation.com" target="_blank">
+      Litchfield Capital Corporation
+    </a>.
+  </p>
+
+  <p>
+    The central theme of VerbumTechnologies is the collaborative exploration of Artificial Intelligence and fundamental theory.
+    Projects span linguistics, machine learning, physics, computation and the philosophy of computation. We seek to understand and develop new models of AI. 
+  </p>
+
+  <p>
+    The engine of this initiative is a partnership between human inquiry and language models, working together as co-investigators.
+  </p>
+
+  <div class="protected">
+    <strong>Private Workspace</strong><br/>
+    <button onclick="checkPassword()">Enter Protected Section</button>
+    <div id="private-content">
+      <p>This section contains internal R&D notes and collaborative prototypes.</p>
+      <p>If you are not authorized, please email <a href="mailto:Paolo@VerbumTechnologies.com">Paolo@VerbumTechnologies.com</a> for access.</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    &copy; 2025 VerbumTechnologies. All rights reserved.
+  </div>
+
 </body>
 </html>
-
