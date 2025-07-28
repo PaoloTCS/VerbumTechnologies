@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI & Physics | VerbumTechnologies</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent: #06b6d4;
+      --accent-light: #22d3ee;
+      --neutral: #f8fafc;
+      --neutral-dark: #e2e8f0;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --error: #ef4444;
+      --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      --gradient-accent: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--neutral);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    /* ---------- Header ---------- */
+    header {
+      text-align: center;
+      padding: 3rem 0;
+      background: var(--gradient-primary);
+      color: white;
+      margin-bottom: 2rem;
+      border-radius: 0 0 20px 20px;
+    }
+
+    .logo {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      margin-bottom: 2rem;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      background: rgba(255,255,255,0.1);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+    nav a:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    /* ---------- Hero Section ---------- */
+    .hero {
+      background: var(--gradient-accent);
+      color: white;
+      padding: 4rem 2rem;
+      border-radius: 20px;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      font-weight: 800;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      opacity: 0.9;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* ---------- Sections ---------- */
+    .section {
+      margin: 3rem 0;
+      padding: 2rem;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .section:hover {
+      transform: translateY(-5px);
+    }
+
+    h2 {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+      position: relative;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--gradient-accent);
+      border-radius: 2px;
+    }
+
+    h3 {
+      color: var(--primary);
+      margin: 2rem 0 1rem 0;
+      font-size: 1.5rem;
+    }
+
+    /* ---------- Research Grid ---------- */
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .research-card {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      padding: 2rem;
+      border-radius: 15px;
+      border-left: 4px solid var(--accent);
+      transition: all 0.3s ease;
+    }
+
+    .research-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(6, 182, 212, 0.2);
+    }
+
+    .research-card h4 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    /* ---------- Back Button ---------- */
+    .back-btn {
+      display: inline-block;
+      background: var(--gradient-primary);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      margin-bottom: 2rem;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      margin-top: 4rem;
+      padding: 2rem 0;
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--text-light);
+      background: var(--neutral-dark);
+      border-radius: 15px 15px 0 0;
+    }
+
+    /* ---------- Responsive Design ---------- */
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem;
+      }
+      
+      nav ul {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .research-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">VerbumTechnologies</div>
+      <div class="tagline">Advancing AI Research Through Physics-Inspired Innovation</div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#research">Research</a></li>
+          <li><a href="index.html#papers">Papers</a></li>
+          <li><a href="index.html#team">Team</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <a href="index.html" class="back-btn">← Back to Research Areas</a>
+
+    <!-- --------------- Hero Section --------------- -->
+    <section class="hero">
+      <h1>AI & Physics</h1>
+      <p>Exploring the fundamental connections between artificial intelligence and physical systems, bridging the gap between computational intelligence and the laws of nature.</p>
+    </section>
+
+    <!-- --------------- Overview --------------- -->
+    <section class="section">
+      <h2>Research Overview</h2>
+      <p>
+        Our AI & Physics research program investigates the deep connections between artificial intelligence 
+        and physical systems. We believe that understanding these fundamental relationships is key to 
+        developing more robust, efficient, and interpretable AI systems.
+      </p>
+      <p>
+        By drawing inspiration from physical principles such as energy conservation, symmetry, and 
+        emergent behavior, we develop novel approaches to machine learning that are both theoretically 
+        sound and practically effective.
+      </p>
+    </section>
+
+    <!-- --------------- Research Areas --------------- -->
+    <section class="section">
+      <h2>Key Research Areas</h2>
+      <div class="research-grid">
+        <div class="research-card">
+          <h4>Neural Path Integrals</h4>
+          <p>
+            Developing a physics-inspired framework that treats neural network inference as a path 
+            integral problem, enabling new approaches to optimization and uncertainty quantification.
+          </p>
+        </div>
+        <div class="research-card">
+          <h4>Energy-Based Models</h4>
+          <p>
+            Creating AI systems that respect energy conservation principles, leading to more stable 
+            and predictable behavior in complex environments.
+          </p>
+        </div>
+        <div class="research-card">
+          <h4>Symmetry-Aware Learning</h4>
+          <p>
+            Incorporating physical symmetries into neural architectures to improve generalization 
+            and reduce the need for large training datasets.
+          </p>
+        </div>
+        <div class="research-card">
+          <h4>Emergent Behavior</h4>
+          <p>
+            Studying how complex behaviors emerge from simple interactions in AI systems, similar 
+            to phase transitions in physical systems.
+          </p>
+        </div>
+        <div class="research-card">
+          <h4>Quantum-Inspired Computing</h4>
+          <p>
+            Exploring quantum computing principles to develop new algorithms and architectures 
+            for classical AI systems.
+          </p>
+        </div>
+        <div class="research-card">
+          <h4>Thermodynamic AI</h4>
+          <p>
+            Applying thermodynamic principles to understand and improve the efficiency of 
+            machine learning algorithms and hardware.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- --------------- Applications --------------- -->
+    <section class="section">
+      <h2>Applications</h2>
+      <h3>Scientific Discovery</h3>
+      <p>
+        Our physics-inspired AI approaches are particularly well-suited for scientific applications, 
+        where interpretability and adherence to physical laws are crucial. We're working on 
+        applications in materials science, drug discovery, and climate modeling.
+      </p>
+      
+      <h3>Robotics and Control</h3>
+      <p>
+        Energy-aware AI systems can lead to more efficient and stable robotic control systems, 
+        particularly in dynamic environments where energy conservation is important.
+      </p>
+      
+      <h3>Computational Physics</h3>
+      <p>
+        We're developing AI tools that can accelerate computational physics simulations while 
+        maintaining physical accuracy and interpretability.
+      </p>
+    </section>
+
+    <!-- --------------- Publications --------------- -->
+    <section class="section">
+      <h2>Recent Publications</h2>
+      <div class="research-card">
+        <h4>Neural Path Integrals and the Semantic Action Principle</h4>
+        <p><em>Coming August 2025 — arXiv preprint</em></p>
+        <p>
+          A physics-inspired framework linking deep-network inference, energy bounds, and 
+          cardinality-cascade pruning.
+        </p>
+      </div>
+    </section>
+
+    <!-- --------------- Contact --------------- -->
+    <section class="section">
+      <h2>Get Involved</h2>
+      <p>
+        Interested in collaborating on AI & Physics research? We're always looking for 
+        researchers, students, and industry partners who share our vision of bridging 
+        AI and physical systems.
+      </p>
+      <p><strong>Contact:</strong> <a href="mailto:paolo@verbumtechnologies.com">paolo@verbumtechnologies.com</a></p>
+    </section>
+
+    <footer>© 2025 Verbum Technologies. All rights reserved.</footer>
+  </div>
+</body>
+</html> 

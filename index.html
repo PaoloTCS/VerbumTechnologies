@@ -6,10 +6,19 @@
   <title>VerbumTechnologies | AI Research</title>
   <style>
     :root {
-      --primary: #003366;
-      --accent:  #0066cc;
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent: #06b6d4;
+      --accent-light: #22d3ee;
       --neutral: #f8fafc;
-      --text:    #1a202c;
+      --neutral-dark: #e2e8f0;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --error: #ef4444;
+      --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      --gradient-accent: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
     }
 
     * {
@@ -26,7 +35,7 @@
     }
 
     .container {
-      max-width: 800px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 2rem;
     }
@@ -34,54 +43,212 @@
     /* ---------- Header ---------- */
     header {
       text-align: center;
-      padding: 2rem 0;
+      padding: 3rem 0;
+      background: var(--gradient-primary);
+      color: white;
+      margin-bottom: 2rem;
+      border-radius: 0 0 20px 20px;
     }
 
     .logo {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--primary);
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      margin-bottom: 2rem;
     }
 
     nav ul {
       display: flex;
       justify-content: center;
-      gap: 1.5rem;
+      gap: 2rem;
       list-style: none;
-      margin-top: 1rem;
+      flex-wrap: wrap;
     }
 
     nav a {
-      color: var(--accent);
-      font-weight: 500;
+      color: white;
+      font-weight: 600;
       text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      background: rgba(255,255,255,0.1);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
     }
     nav a:hover {
-      text-decoration: underline;
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
 
     /* ---------- Sections ---------- */
     .section {
       margin: 3rem 0;
+      padding: 2rem;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .section:hover {
+      transform: translateY(-5px);
     }
 
     h2 {
       color: var(--primary);
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+      position: relative;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--gradient-accent);
+      border-radius: 2px;
+    }
+
+    /* ---------- Landing Pages Grid ---------- */
+    .landing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .landing-card {
+      background: var(--gradient-accent);
+      color: white;
+      padding: 2rem;
+      border-radius: 15px;
+      text-align: center;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: block;
+    }
+
+    .landing-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(6, 182, 212, 0.3);
+    }
+
+    .landing-card h3 {
+      font-size: 1.5rem;
       margin-bottom: 1rem;
     }
 
-    /* ---------- Teaser card ---------- */
-    .paper-teaser {
-      background: #e8f4fd;
-      border-left: 4px solid var(--primary);
-      padding: 1rem 1.5rem;
-      border-radius: 8px;
+    .landing-card p {
+      opacity: 0.9;
       margin-bottom: 1.5rem;
+    }
+
+    .landing-card .btn {
+      background: rgba(255,255,255,0.2);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .landing-card .btn:hover {
+      background: rgba(255,255,255,0.3);
+      transform: scale(1.05);
+    }
+
+    /* ---------- Password Protection ---------- */
+    .password-section {
+      background: var(--neutral-dark);
+      border: 2px dashed var(--primary);
+      padding: 2rem;
+      border-radius: 15px;
+      text-align: center;
+    }
+
+    .password-form {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .password-input {
+      padding: 0.75rem 1rem;
+      border: 2px solid var(--primary);
+      border-radius: 8px;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    .password-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
+    }
+
+    .btn-primary {
+      background: var(--gradient-primary);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+    }
+
+    .error-message {
+      color: var(--error);
+      margin-top: 1rem;
+      font-weight: 600;
+    }
+
+    .success-message {
+      color: var(--success);
+      margin-top: 1rem;
+      font-weight: 600;
+    }
+
+    /* ---------- Paper Teaser ---------- */
+    .paper-teaser {
+      background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%);
+      border-left: 4px solid var(--accent);
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .paper-teaser:hover {
+      transform: translateX(5px);
+      box-shadow: 0 4px 15px rgba(6, 182, 212, 0.2);
     }
 
     .paper-teaser h3 {
       margin: 0 0 0.5rem 0;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       color: var(--primary);
     }
 
@@ -90,7 +257,10 @@
       font-weight: 600;
       text-decoration: none;
     }
-    .paper-teaser a:hover { text-decoration: underline; }
+    .paper-teaser a:hover { 
+      text-decoration: underline; 
+      color: var(--primary);
+    }
 
     /* ---------- Footer ---------- */
     footer {
@@ -98,7 +268,29 @@
       padding: 2rem 0;
       text-align: center;
       font-size: 0.875rem;
-      color: var(--text);
+      color: var(--text-light);
+      background: var(--neutral-dark);
+      border-radius: 15px 15px 0 0;
+    }
+
+    /* ---------- Responsive Design ---------- */
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem;
+      }
+      
+      nav ul {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .landing-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .password-form {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
@@ -106,10 +298,13 @@
   <div class="container">
     <header>
       <div class="logo">VerbumTechnologies</div>
+      <div class="tagline">Advancing AI Research Through Physics-Inspired Innovation</div>
       <nav>
         <ul>
           <li><a href="#mission">Mission</a></li>
-          <li><a href="#papers">Theoretical Papers</a></li>
+          <li><a href="#research">Research Areas</a></li>
+          <li><a href="#papers">Papers</a></li>
+          <li><a href="#team">Team</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -117,44 +312,139 @@
 
     <!-- --------------- Mission --------------- -->
     <section id="mission" class="section">
-      <h2>Mission</h2>
+      <h2>Our Mission</h2>
       <p>
         We explore the intersection of artificial intelligence, physics, and knowledge
         representation, building open research and practical tools for the semantic future
-        of computing.
+        of computing. Our work bridges theoretical insights with practical applications,
+        pushing the boundaries of what's possible in AI research.
       </p>
     </section>
 
-    <!-- --------------- Papers --------------- -->
-    <section id="papers" class="section">
-      <h2>Theoretical Papers</h2>
-
-      <div class="paper-teaser">
-        <h3>Coming August 2025 — arXiv preprint</h3>
-        <p>
-          <strong>Neural Path Integrals and the Semantic Action Principle</strong> • A
-          physics-inspired framework linking deep-network inference, energy bounds, and
-          cardinality-cascade pruning.
-        </p>
-        <a href="mailto:info@verbumtechnologies.com?subject=Preprint%20Notification">
-          Join the mailing list for release →
+    <!-- --------------- Research Areas --------------- -->
+    <section id="research" class="section">
+      <h2>Research Areas</h2>
+      <div class="landing-grid">
+        <a href="ai-physics.html" class="landing-card">
+          <h3>AI & Physics</h3>
+          <p>Exploring the fundamental connections between artificial intelligence and physical systems</p>
+          <span class="btn">Learn More →</span>
+        </a>
+        <a href="knowledge-representation.html" class="landing-card">
+          <h3>Knowledge Representation</h3>
+          <p>Developing novel approaches to semantic understanding and information processing</p>
+          <span class="btn">Learn More →</span>
+        </a>
+        <a href="neural-networks.html" class="landing-card">
+          <h3>Neural Networks</h3>
+          <p>Advancing deep learning through physics-inspired architectures and training methods</p>
+          <span class="btn">Learn More →</span>
+        </a>
+        <a href="semantic-computing.html" class="landing-card">
+          <h3>Semantic Computing</h3>
+          <p>Building the next generation of meaning-aware computational systems</p>
+          <span class="btn">Learn More →</span>
         </a>
       </div>
+    </section>
 
-      <ul>
-        <li><a href="docs/Bekenstein_Bound_FIL.pdf">Bekenstein Bound-ness of Language</a></li>
-        <li><a href="docs/Weighted_Observation_Gaussian_Mixtures.pdf">Weighted Observation &amp; Gaussian Mixtures</a></li>
-        <!-- Add more links as needed -->
-      </ul>
+    <!-- --------------- Papers (Password Protected) --------------- -->
+    <section id="papers" class="section">
+      <h2>Theoretical Papers</h2>
+      
+      <div class="password-section">
+        <h3>🔒 Protected Content</h3>
+        <p>Enter the password to access our latest research papers and theoretical work.</p>
+        
+        <form class="password-form" id="passwordForm">
+          <input type="password" class="password-input" id="passwordInput" placeholder="Enter password" required>
+          <button type="submit" class="btn-primary">Access Papers</button>
+        </form>
+        
+        <div id="errorMessage" class="error-message" style="display: none;"></div>
+        <div id="successMessage" class="success-message" style="display: none;"></div>
+      </div>
+
+      <div id="papersContent" style="display: none;">
+        <div class="paper-teaser">
+          <h3>Coming August 2025 — arXiv preprint</h3>
+          <p>
+            <strong>Neural Path Integrals and the Semantic Action Principle</strong> • A
+            physics-inspired framework linking deep-network inference, energy bounds, and
+            cardinality-cascade pruning.
+          </p>
+          <a href="mailto:info@verbumtechnologies.com?subject=Preprint%20Notification">
+            Join the mailing list for release →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- --------------- Team --------------- -->
+    <section id="team" class="section">
+      <h2>Our Team</h2>
+      <p>
+        Our interdisciplinary team combines expertise in artificial intelligence, theoretical physics, 
+        and computer science to push the boundaries of what's possible in AI research.
+      </p>
+      <div class="landing-grid">
+        <a href="team.html" class="landing-card">
+          <h3>Meet the Team</h3>
+          <p>Learn about our researchers and their backgrounds</p>
+          <span class="btn">View Team →</span>
+        </a>
+        <a href="careers.html" class="landing-card">
+          <h3>Join Us</h3>
+          <p>Explore opportunities to contribute to cutting-edge AI research</p>
+          <span class="btn">View Careers →</span>
+        </a>
+      </div>
     </section>
 
     <!-- --------------- Contact --------------- -->
     <section id="contact" class="section">
       <h2>Contact</h2>
-      <p>Email: <a href="mailto:paolo@verbumtechnologies.com">paolo@verbumtechnologies.com</a></p>
+      <p>Get in touch with us to learn more about our research or discuss potential collaborations.</p>
+      <p><strong>Email:</strong> <a href="mailto:paolo@verbumtechnologies.com">paolo@verbumtechnologies.com</a></p>
     </section>
 
     <footer>© 2025 Verbum Technologies. All rights reserved.</footer>
   </div>
+
+  <script>
+    // Password protection functionality
+    document.getElementById('passwordForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const password = document.getElementById('passwordInput').value;
+      const correctPassword = 'VerbumTechnologies2025';
+      const errorMessage = document.getElementById('errorMessage');
+      const successMessage = document.getElementById('successMessage');
+      const papersContent = document.getElementById('papersContent');
+      const passwordSection = document.querySelector('.password-section');
+      
+      if (password === correctPassword) {
+        errorMessage.style.display = 'none';
+        successMessage.style.display = 'block';
+        successMessage.textContent = 'Access granted! Welcome to our research papers.';
+        papersContent.style.display = 'block';
+        passwordSection.style.display = 'none';
+        
+        // Store in session storage so user doesn't need to re-enter password
+        sessionStorage.setItem('papersAccess', 'granted');
+      } else {
+        successMessage.style.display = 'none';
+        errorMessage.style.display = 'block';
+        errorMessage.textContent = 'Incorrect password. Please try again.';
+        document.getElementById('passwordInput').value = '';
+      }
+    });
+
+    // Check if user already has access
+    if (sessionStorage.getItem('papersAccess') === 'granted') {
+      document.querySelector('.password-section').style.display = 'none';
+      document.getElementById('papersContent').style.display = 'block';
+    }
+  </script>
 </body>
-</html>
+</html> 

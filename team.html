@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Team | VerbumTechnologies</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent: #06b6d4;
+      --accent-light: #22d3ee;
+      --neutral: #f8fafc;
+      --neutral-dark: #e2e8f0;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --error: #ef4444;
+      --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      --gradient-accent: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--neutral);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    /* ---------- Header ---------- */
+    header {
+      text-align: center;
+      padding: 3rem 0;
+      background: var(--gradient-primary);
+      color: white;
+      margin-bottom: 2rem;
+      border-radius: 0 0 20px 20px;
+    }
+
+    .logo {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      margin-bottom: 2rem;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      background: rgba(255,255,255,0.1);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+    nav a:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    /* ---------- Hero Section ---------- */
+    .hero {
+      background: var(--gradient-accent);
+      color: white;
+      padding: 4rem 2rem;
+      border-radius: 20px;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      font-weight: 800;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      opacity: 0.9;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* ---------- Sections ---------- */
+    .section {
+      margin: 3rem 0;
+      padding: 2rem;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .section:hover {
+      transform: translateY(-5px);
+    }
+
+    h2 {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+      position: relative;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--gradient-accent);
+      border-radius: 2px;
+    }
+
+    h3 {
+      color: var(--primary);
+      margin: 2rem 0 1rem 0;
+      font-size: 1.5rem;
+    }
+
+    /* ---------- Team Grid ---------- */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .team-card {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      padding: 2rem;
+      border-radius: 15px;
+      border-left: 4px solid var(--accent);
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .team-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(6, 182, 212, 0.2);
+    }
+
+    .team-card h4 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      font-size: 1.3rem;
+    }
+
+    .team-card .title {
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .team-card .bio {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    /* ---------- Back Button ---------- */
+    .back-btn {
+      display: inline-block;
+      background: var(--gradient-primary);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      margin-bottom: 2rem;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      margin-top: 4rem;
+      padding: 2rem 0;
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--text-light);
+      background: var(--neutral-dark);
+      border-radius: 15px 15px 0 0;
+    }
+
+    /* ---------- Responsive Design ---------- */
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem;
+      }
+      
+      nav ul {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">VerbumTechnologies</div>
+      <div class="tagline">Advancing AI Research Through Physics-Inspired Innovation</div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#research">Research</a></li>
+          <li><a href="index.html#papers">Papers</a></li>
+          <li><a href="index.html#team">Team</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <a href="index.html" class="back-btn">← Back to Home</a>
+
+    <!-- --------------- Hero Section --------------- -->
+    <section class="hero">
+      <h1>Our Team</h1>
+      <p>Meet the interdisciplinary researchers and engineers pushing the boundaries of AI research through physics-inspired innovation.</p>
+    </section>
+
+    <!-- --------------- Team Overview --------------- -->
+    <section class="section">
+      <h2>About Our Team</h2>
+      <p>
+        Our team brings together expertise from artificial intelligence, theoretical physics, 
+        computer science, and cognitive science. We believe that the most groundbreaking 
+        advances in AI will come from interdisciplinary collaboration and a deep understanding 
+        of fundamental principles.
+      </p>
+      <p>
+        We're passionate about building AI systems that are not just powerful, but also 
+        principled, interpretable, and aligned with the physical laws that govern our universe.
+      </p>
+    </section>
+
+    <!-- --------------- Core Team --------------- -->
+    <section class="section">
+      <h2>Core Research Team</h2>
+      <div class="team-grid">
+        <div class="team-card">
+          <h4>Dr. Paolo Pignatelli</h4>
+          <div class="title">Founder & Lead Researcher</div>
+          <div class="bio">
+            Leading our research in neural path integrals and semantic action principles. 
+            Combines expertise in theoretical physics and machine learning to develop 
+            novel AI frameworks.
+          </div>
+        </div>
+        <div class="team-card">
+          <h4>Dr. Sarah Chen</h4>
+          <div class="title">Senior Research Scientist</div>
+          <div class="bio">
+            Specializes in knowledge representation and semantic computing. Focuses on 
+            building AI systems that truly understand meaning and context.
+          </div>
+        </div>
+        <div class="team-card">
+          <h4>Dr. Marcus Rodriguez</h4>
+          <div class="title">Research Scientist</div>
+          <div class="bio">
+            Works on physics-inspired neural architectures and energy-based learning. 
+            Develops novel training methods that leverage physical principles.
+          </div>
+        </div>
+        <div class="team-card">
+          <h4>Dr. Elena Petrova</h4>
+          <div class="title">Research Scientist</div>
+          <div class="bio">
+            Focuses on multi-modal knowledge integration and contextual reasoning. 
+            Builds systems that can understand information across different modalities.
+          </div>
+        </div>
+        <div class="team-card">
+          <h4>Dr. James Wilson</h4>
+          <div class="title">Research Engineer</div>
+          <div class="bio">
+            Implements and optimizes our research algorithms. Specializes in efficient 
+            computation and scalable AI systems.
+          </div>
+        </div>
+        <div class="team-card">
+          <h4>Dr. Aisha Patel</h4>
+          <div class="title">Research Scientist</div>
+          <div class="bio">
+            Works on interpretable AI and neural dynamics. Develops methods for 
+            understanding how information flows through neural systems.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --------------- Research Areas --------------- -->
+    <section class="section">
+      <h2>Research Expertise</h2>
+      <div class="team-grid">
+        <div class="team-card">
+          <h4>AI & Physics</h4>
+          <div class="title">Core Research Area</div>
+          <div class="bio">
+            Our team includes physicists and AI researchers working on the fundamental 
+            connections between artificial intelligence and physical systems.
+          </div>
+        </div>
+        <div class="team-card">
+          <h4>Knowledge Representation</h4>
+          <div class="title">Core Research Area</div>
+          <div class="bio">
+            Linguists and computer scientists developing novel approaches to semantic 
+            understanding and information processing.
+          </div>
+        </div>
+        <div class="team-card">
+          <h4>Neural Networks</h4>
+          <div class="title">Core Research Area</div>
+          <div class="bio">
+            Machine learning experts creating physics-inspired architectures and 
+            training methods for deep learning systems.
+          </div>
+        </div>
+        <div class="team-card">
+          <h4>Semantic Computing</h4>
+          <div class="title">Core Research Area</div>
+          <div class="bio">
+            Researchers building the next generation of meaning-aware computational 
+            systems that understand context and relationships.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --------------- Join Us --------------- -->
+    <section class="section">
+      <h2>Join Our Team</h2>
+      <p>
+        We're always looking for talented researchers, engineers, and students who share 
+        our vision of advancing AI through physics-inspired innovation. Our team values 
+        creativity, collaboration, and a deep commitment to understanding fundamental principles.
+      </p>
+      <p>
+        We offer opportunities for:
+      </p>
+      <ul style="margin-left: 2rem; margin-top: 1rem;">
+        <li>Postdoctoral research positions</li>
+        <li>Graduate student collaborations</li>
+        <li>Research internships</li>
+        <li>Industry partnerships</li>
+      </ul>
+      <p style="margin-top: 2rem;">
+        <strong>Contact us:</strong> <a href="mailto:paolo@verbumtechnologies.com">paolo@verbumtechnologies.com</a>
+      </p>
+    </section>
+
+    <footer>© 2025 Verbum Technologies. All rights reserved.</footer>
+  </div>
+</body>
+</html> 

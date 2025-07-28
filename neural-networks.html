@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neural Networks | VerbumTechnologies</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent: #06b6d4;
+      --accent-light: #22d3ee;
+      --neutral: #f8fafc;
+      --neutral-dark: #e2e8f0;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --error: #ef4444;
+      --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      --gradient-accent: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--neutral);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    /* ---------- Header ---------- */
+    header {
+      text-align: center;
+      padding: 3rem 0;
+      background: var(--gradient-primary);
+      color: white;
+      margin-bottom: 2rem;
+      border-radius: 0 0 20px 20px;
+    }
+
+    .logo {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      margin-bottom: 2rem;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      background: rgba(255,255,255,0.1);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+    nav a:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    /* ---------- Hero Section ---------- */
+    .hero {
+      background: var(--gradient-accent);
+      color: white;
+      padding: 4rem 2rem;
+      border-radius: 20px;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      font-weight: 800;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      opacity: 0.9;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* ---------- Sections ---------- */
+    .section {
+      margin: 3rem 0;
+      padding: 2rem;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .section:hover {
+      transform: translateY(-5px);
+    }
+
+    h2 {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+      position: relative;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--gradient-accent);
+      border-radius: 2px;
+    }
+
+    h3 {
+      color: var(--primary);
+      margin: 2rem 0 1rem 0;
+      font-size: 1.5rem;
+    }
+
+    /* ---------- Research Grid ---------- */
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .research-card {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      padding: 2rem;
+      border-radius: 15px;
+      border-left: 4px solid var(--accent);
+      transition: all 0.3s ease;
+    }
+
+    .research-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(6, 182, 212, 0.2);
+    }
+
+    .research-card h4 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    /* ---------- Back Button ---------- */
+    .back-btn {
+      display: inline-block;
+      background: var(--gradient-primary);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      margin-bottom: 2rem;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      margin-top: 4rem;
+      padding: 2rem 0;
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--text-light);
+      background: var(--neutral-dark);
+      border-radius: 15px 15px 0 0;
+    }
+
+    /* ---------- Responsive Design ---------- */
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem;
+      }
+      
+      nav ul {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .research-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">VerbumTechnologies</div>
+      <div class="tagline">Advancing AI Research Through Physics-Inspired Innovation</div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#research">Research</a></li>
+          <li><a href="index.html#papers">Papers</a></li>
+          <li><a href="index.html#team">Team</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <a href="index.html" class="back-btn">← Back to Research Areas</a>
+
+    <!-- --------------- Hero Section --------------- -->
+    <section class="hero">
+      <h1>Neural Networks</h1>
+      <p>Advancing deep learning through physics-inspired architectures and training methods, creating more efficient and interpretable neural systems.</p>
+    </section>
+
+    <!-- --------------- Overview --------------- -->
+    <section class="section">
+      <h2>Research Overview</h2>
+      <p>
+        Our Neural Networks research program focuses on developing novel architectures and training 
+        methods that draw inspiration from physical systems. We believe that understanding the 
+        fundamental principles of neural computation can lead to more efficient, robust, and 
+        interpretable deep learning systems.
+      </p>
+      <p>
+        By applying insights from physics, mathematics, and computational neuroscience, we're 
+        creating neural networks that are not just powerful, but also principled and well-understood.
+      </p>
+    </section>
+
+    <!-- --------------- Research Areas --------------- -->
+    <section class="section">
+      <h2>Key Research Areas</h2>
+      <div class="research-grid">
+        <div class="research-card">
+          <h4>Physics-Inspired Architectures</h4>
+          <p>
+            Designing neural network architectures that incorporate physical principles such as 
+            conservation laws, symmetries, and energy minimization.
+          </p>
+        </div>
+        <div class="research-card">
+          <h4>Efficient Training Methods</h4>
+          <p>
+            Developing training algorithms that leverage physical insights to achieve faster 
+            convergence and better generalization.
+          </p>
+        </div>
+        <div class="research-card">
+          <h4>Interpretable Networks</h4>
+          <p>
+            Creating neural networks whose internal representations and decision-making processes 
+            are transparent and understandable.
+          </p>
+        </div>
+        <div class="research-card">
+          <h4>Dynamic Neural Systems</h4>
+          <p>
+            Building neural networks that can adapt and evolve over time, similar to biological 
+            neural systems.
+          </p>
+        </div>
+        <div class="research-card">
+          <h4>Energy-Based Learning</h4>
+          <p>
+            Developing learning frameworks that treat neural networks as energy-based models, 
+            leading to more stable and principled training.
+          </p>
+        </div>
+        <div class="research-card">
+          <h4>Neural Dynamics</h4>
+          <p>
+            Studying the temporal dynamics of neural networks to understand how information 
+            flows and transforms through the system.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- --------------- Applications --------------- -->
+    <section class="section">
+      <h2>Applications</h2>
+      <h3>Computer Vision</h3>
+      <p>
+        Our physics-inspired neural networks are advancing computer vision by incorporating 
+        geometric and physical constraints, leading to more robust and interpretable visual 
+        understanding systems.
+      </p>
+      
+      <h3>Natural Language Processing</h3>
+      <p>
+        We're developing neural architectures for language processing that respect linguistic 
+        structure and semantic relationships, enabling more accurate and contextually aware 
+        language models.
+      </p>
+      
+      <h3>Scientific Computing</h3>
+      <p>
+        Our neural networks are being applied to scientific problems where physical accuracy 
+        and interpretability are crucial, such as climate modeling and materials science.
+      </p>
+      
+      <h3>Robotics and Control</h3>
+      <p>
+        Physics-inspired neural networks are enabling more stable and efficient robotic control 
+        systems that can adapt to changing environments and constraints.
+      </p>
+    </section>
+
+    <!-- --------------- Publications --------------- -->
+    <section class="section">
+      <h2>Recent Publications</h2>
+      <div class="research-card">
+        <h4>Neural Path Integrals and the Semantic Action Principle</h4>
+        <p><em>Coming August 2025 — arXiv preprint</em></p>
+        <p>
+          A physics-inspired framework linking deep-network inference, energy bounds, and 
+          cardinality-cascade pruning.
+        </p>
+      </div>
+      <div class="research-card">
+        <h4>Physics-Informed Neural Architectures</h4>
+        <p><em>Coming October 2025 — arXiv preprint</em></p>
+        <p>
+          Novel neural network designs that incorporate physical constraints and conservation 
+          principles for improved performance and interpretability.
+        </p>
+      </div>
+    </section>
+
+    <!-- --------------- Contact --------------- -->
+    <section class="section">
+      <h2>Get Involved</h2>
+      <p>
+        Interested in advancing the state of neural network research? We're looking for 
+        researchers, engineers, and students who want to help build the next generation 
+        of deep learning systems.
+      </p>
+      <p><strong>Contact:</strong> <a href="mailto:paolo@verbumtechnologies.com">paolo@verbumtechnologies.com</a></p>
+    </section>
+
+    <footer>© 2025 Verbum Technologies. All rights reserved.</footer>
+  </div>
+</body>
+</html> 

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Careers | VerbumTechnologies</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent: #06b6d4;
+      --accent-light: #22d3ee;
+      --neutral: #f8fafc;
+      --neutral-dark: #e2e8f0;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --error: #ef4444;
+      --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      --gradient-accent: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--neutral);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    /* ---------- Header ---------- */
+    header {
+      text-align: center;
+      padding: 3rem 0;
+      background: var(--gradient-primary);
+      color: white;
+      margin-bottom: 2rem;
+      border-radius: 0 0 20px 20px;
+    }
+
+    .logo {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      margin-bottom: 2rem;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      background: rgba(255,255,255,0.1);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+    nav a:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    /* ---------- Hero Section ---------- */
+    .hero {
+      background: var(--gradient-accent);
+      color: white;
+      padding: 4rem 2rem;
+      border-radius: 20px;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      font-weight: 800;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      opacity: 0.9;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* ---------- Sections ---------- */
+    .section {
+      margin: 3rem 0;
+      padding: 2rem;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .section:hover {
+      transform: translateY(-5px);
+    }
+
+    h2 {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+      position: relative;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--gradient-accent);
+      border-radius: 2px;
+    }
+
+    h3 {
+      color: var(--primary);
+      margin: 2rem 0 1rem 0;
+      font-size: 1.5rem;
+    }
+
+    /* ---------- Job Grid ---------- */
+    .job-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .job-card {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      padding: 2rem;
+      border-radius: 15px;
+      border-left: 4px solid var(--accent);
+      transition: all 0.3s ease;
+    }
+
+    .job-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(6, 182, 212, 0.2);
+    }
+
+    .job-card h4 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      font-size: 1.3rem;
+    }
+
+    .job-card .type {
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .job-card .description {
+      color: var(--text-light);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .job-card .requirements {
+      color: var(--text);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .job-card .requirements strong {
+      color: var(--primary);
+    }
+
+    .apply-btn {
+      background: var(--gradient-primary);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+
+    .apply-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+    }
+
+    /* ---------- Back Button ---------- */
+    .back-btn {
+      display: inline-block;
+      background: var(--gradient-primary);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      margin-bottom: 2rem;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      margin-top: 4rem;
+      padding: 2rem 0;
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--text-light);
+      background: var(--neutral-dark);
+      border-radius: 15px 15px 0 0;
+    }
+
+    /* ---------- Responsive Design ---------- */
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem;
+      }
+      
+      nav ul {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .job-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">VerbumTechnologies</div>
+      <div class="tagline">Advancing AI Research Through Physics-Inspired Innovation</div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#research">Research</a></li>
+          <li><a href="index.html#papers">Papers</a></li>
+          <li><a href="index.html#team">Team</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <a href="index.html" class="back-btn">← Back to Home</a>
+
+    <!-- --------------- Hero Section --------------- -->
+    <section class="hero">
+      <h1>Join Our Team</h1>
+      <p>Help us build the future of AI research through physics-inspired innovation. We're looking for passionate researchers and engineers to join our mission.</p>
+    </section>
+
+    <!-- --------------- About Working Here --------------- -->
+    <section class="section">
+      <h2>Why Work With Us</h2>
+      <p>
+        At VerbumTechnologies, we're building the next generation of AI systems that are not just 
+        powerful, but also principled and aligned with the fundamental laws of physics. Our work 
+        spans the intersection of artificial intelligence, theoretical physics, and knowledge representation.
+      </p>
+      <p>
+        We offer a collaborative, interdisciplinary environment where researchers can explore 
+        cutting-edge ideas and contribute to groundbreaking discoveries in AI research.
+      </p>
+      
+      <h3>What We Offer</h3>
+      <ul style="margin-left: 2rem; margin-top: 1rem;">
+        <li>Cutting-edge research opportunities in AI and physics</li>
+        <li>Collaborative, interdisciplinary work environment</li>
+        <li>Access to state-of-the-art computing resources</li>
+        <li>Opportunities to publish in top-tier conferences and journals</li>
+        <li>Flexible work arrangements and competitive compensation</li>
+        <li>Professional development and conference attendance support</li>
+      </ul>
+    </section>
+
+    <!-- --------------- Open Positions --------------- -->
+    <section class="section">
+      <h2>Open Positions</h2>
+      <div class="job-grid">
+        <div class="job-card">
+          <h4>Senior Research Scientist - AI & Physics</h4>
+          <div class="type">Full-time • Remote/Hybrid</div>
+          <div class="description">
+            Lead research in physics-inspired AI, focusing on neural path integrals and 
+            energy-based models. Develop novel frameworks that bridge AI and physical systems.
+          </div>
+          <div class="requirements">
+            <strong>Requirements:</strong> PhD in Physics, Computer Science, or related field. 
+            Strong background in machine learning and theoretical physics. Experience with 
+            neural networks and optimization algorithms.
+          </div>
+          <a href="mailto:paolo@verbumtechnologies.com?subject=Application%20for%20Senior%20Research%20Scientist%20-%20AI%20%26%20Physics" class="apply-btn">Apply Now</a>
+        </div>
+
+        <div class="job-card">
+          <h4>Research Scientist - Knowledge Representation</h4>
+          <div class="type">Full-time • Remote/Hybrid</div>
+          <div class="description">
+            Develop novel approaches to semantic understanding and knowledge representation. 
+            Build AI systems that truly understand meaning and context.
+          </div>
+          <div class="requirements">
+            <strong>Requirements:</strong> PhD in Computer Science, Linguistics, or related field. 
+            Experience with natural language processing, semantic analysis, and knowledge graphs. 
+            Strong programming skills in Python.
+          </div>
+          <a href="mailto:paolo@verbumtechnologies.com?subject=Application%20for%20Research%20Scientist%20-%20Knowledge%20Representation" class="apply-btn">Apply Now</a>
+        </div>
+
+        <div class="job-card">
+          <h4>Research Engineer - Neural Networks</h4>
+          <div class="type">Full-time • Remote/Hybrid</div>
+          <div class="description">
+            Implement and optimize physics-inspired neural architectures. Develop efficient 
+            training methods and scalable AI systems.
+          </div>
+          <div class="requirements">
+            <strong>Requirements:</strong> MS/PhD in Computer Science or related field. 
+            Strong experience with PyTorch/TensorFlow, deep learning, and GPU computing. 
+            Background in optimization and numerical methods.
+          </div>
+          <a href="mailto:paolo@verbumtechnologies.com?subject=Application%20for%20Research%20Engineer%20-%20Neural%20Networks" class="apply-btn">Apply Now</a>
+        </div>
+
+        <div class="job-card">
+          <h4>Postdoctoral Researcher - Semantic Computing</h4>
+          <div class="type">Full-time • Remote/Hybrid</div>
+          <div class="description">
+            Research meaning-aware computational systems and contextual reasoning. 
+            Develop frameworks for building AI that understands relationships and context.
+          </div>
+          <div class="requirements">
+            <strong>Requirements:</strong> Recent PhD in Computer Science, AI, or related field. 
+            Strong publication record in AI/ML conferences. Experience with semantic analysis 
+            and computational linguistics.
+          </div>
+          <a href="mailto:paolo@verbumtechnologies.com?subject=Application%20for%20Postdoctoral%20Researcher%20-%20Semantic%20Computing" class="apply-btn">Apply Now</a>
+        </div>
+
+        <div class="job-card">
+          <h4>Research Intern - AI Research</h4>
+          <div class="type">Internship • Remote/Hybrid</div>
+          <div class="description">
+            Work on cutting-edge AI research projects under the guidance of senior researchers. 
+            Contribute to our physics-inspired AI frameworks and semantic computing systems.
+          </div>
+          <div class="requirements">
+            <strong>Requirements:</strong> Currently pursuing MS/PhD in Computer Science, 
+            Physics, or related field. Strong programming skills and interest in AI research. 
+            Available for 3-6 month internship.
+          </div>
+          <a href="mailto:paolo@verbumtechnologies.com?subject=Application%20for%20Research%20Intern%20-%20AI%20Research" class="apply-btn">Apply Now</a>
+        </div>
+
+        <div class="job-card">
+          <h4>Software Engineer - AI Infrastructure</h4>
+          <div class="type">Full-time • Remote/Hybrid</div>
+          <div class="description">
+            Build and maintain the computational infrastructure that powers our AI research. 
+            Develop tools and platforms for efficient AI experimentation and deployment.
+          </div>
+          <div class="requirements">
+            <strong>Requirements:</strong> BS/MS in Computer Science or related field. 
+            Experience with cloud computing, distributed systems, and ML infrastructure. 
+            Strong software engineering skills.
+          </div>
+          <a href="mailto:paolo@verbumtechnologies.com?subject=Application%20for%20Software%20Engineer%20-%20AI%20Infrastructure" class="apply-btn">Apply Now</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- --------------- Application Process --------------- -->
+    <section class="section">
+      <h2>Application Process</h2>
+      <p>
+        We're looking for passionate individuals who share our vision of advancing AI through 
+        physics-inspired innovation. Our application process is designed to be straightforward 
+        and focused on your research interests and technical capabilities.
+      </p>
+      
+      <h3>How to Apply</h3>
+      <ol style="margin-left: 2rem; margin-top: 1rem;">
+        <li><strong>Email Application:</strong> Send your CV/resume and a cover letter to <a href="mailto:paolo@verbumtechnologies.com">paolo@verbumtechnologies.com</a></li>
+        <li><strong>Research Statement:</strong> Include a brief statement about your research interests and how they align with our work</li>
+        <li><strong>Portfolio:</strong> For technical positions, include links to relevant projects, publications, or code repositories</li>
+        <li><strong>Interview Process:</strong> Selected candidates will be invited for technical discussions and research presentations</li>
+      </ol>
+      
+      <p style="margin-top: 2rem;">
+        <strong>Note:</strong> We're always interested in hearing from talented researchers, 
+        even if there isn't a specific position listed. Feel free to reach out with your 
+        research interests and background.
+      </p>
+    </section>
+
+    <footer>© 2025 Verbum Technologies. All rights reserved.</footer>
+  </div>
+</body>
+</html> 
