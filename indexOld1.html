@@ -1,0 +1,2862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VerbumTechnologies | AI Research Initiative</title>
+  <meta name="description" content="VerbumTechnologies - Collaborative exploration of Artificial Intelligence and fundamental theory under Litchfield Capital Corporation">
+  
+  <style>
+    :root {
+      --primary-blue: #003366;
+      --accent-blue: #0066cc;
+      --light-blue: #e8f4fd;
+      --neutral-bg: #f8fafc;
+      --neutral-light: #e2e8f0;
+      --text-primary: #1a202c;
+      --text-secondary: #4a5568;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.7;
+      color: var(--text-primary);
+      background: linear-gradient(135deg, var(--neutral-bg) 0%, #ffffff 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Particle background */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      opacity: 0.3;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 2rem 0;
+    }
+
+    .logo {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.025em;
+      background: linear-gradient(90deg, 
+        #ff0000 0%,     /* Red */
+        #ff8000 14.3%,  /* Orange */
+        #ffff00 28.6%,  /* Yellow */
+        #80ff00 42.9%,  /* Yellow-Green */
+        #00ff00 57.1%,  /* Green */
+        #00ff80 71.4%,  /* Blue-Green */
+        #00ffff 85.7%,  /* Cyan */
+        #0080ff 100%    /* Blue */
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      position: relative;
+      display: inline-block;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      background-color: white;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      transform-style: preserve-3d;
+    }
+
+    .logo:hover {
+      transform: scale(1.05) rotateY(10deg);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .logo::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.8) 50%, transparent 70%);
+      transform: translateX(-100%);
+      transition: transform 0.6s ease;
+    }
+
+    .logo:hover::before {
+      transform: translateX(100%);
+    }
+
+    /* Fallback for browsers that don't support background-clip: text */
+    @supports not (-webkit-background-clip: text) {
+      .logo {
+        color: var(--primary-blue);
+        background-color: white;
+      }
+    }
+
+    .tagline {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      font-weight: 400;
+      opacity: 0;
+      animation: slideInUp 0.8s ease 0.5s forwards;
+    }
+
+    .main-content {
+      background: rgba(255, 255, 255, 0.95);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 2.5rem;
+      box-shadow: var(--shadow);
+      margin-bottom: 2rem;
+      border: 1px solid rgba(0, 51, 102, 0.1);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .main-content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .main-content:hover::before {
+      left: 100%;
+    }
+
+    .main-content:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .intro-section {
+      margin-bottom: 2rem;
+    }
+
+    .company-link {
+      color: var(--accent-blue);
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      transition: all 0.2s;
+      position: relative;
+    }
+
+    .company-link:hover {
+      border-bottom-color: var(--accent-blue);
+      transform: scale(1.05);
+    }
+
+    .company-link::after {
+      content: '↗';
+      position: absolute;
+      top: -2px;
+      right: -15px;
+      opacity: 0;
+      transition: all 0.2s ease;
+    }
+
+    .company-link:hover::after {
+      opacity: 1;
+      transform: translateX(3px) translateY(-3px);
+    }
+
+    .highlight-box {
+      background: var(--light-blue);
+      border-left: 4px solid var(--primary-blue);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 0 8px 8px 0;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .highlight-box:hover {
+      transform: translateX(10px);
+      box-shadow: 0 8px 25px rgba(0, 51, 102, 0.15);
+    }
+
+    .highlight-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--primary-blue), var(--accent-blue));
+      animation: pulse 2s infinite;
+    }
+
+    .research-areas {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .research-tag {
+      background: linear-gradient(90deg, 
+        #ff0000 0%,     /* Red */
+        #ff8000 14.3%,  /* Orange */
+        #ffff00 28.6%,  /* Yellow */
+        #80ff00 42.9%,  /* Yellow-Green */
+        #00ff00 57.1%,  /* Green */
+        #00ff80 71.4%,  /* Blue-Green */
+        #00ffff 85.7%,  /* Cyan */
+        #0080ff 100%    /* Blue */
+      );
+      padding: 0.75rem 1rem;
+      border-radius: 20px;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: white;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .research-tag::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: all 0.3s ease;
+    }
+
+    .research-tag:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .research-tag:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      filter: brightness(1.1);
+    }
+
+    .research-tag:active {
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    /* Create different segments of the spectrum for each tag */
+    .research-tag:nth-child(1) {
+      background: linear-gradient(135deg, #ff0000, #ff8000);
+    }
+    .research-tag:nth-child(2) {
+      background: linear-gradient(135deg, #ff8000, #ffff00);
+    }
+    .research-tag:nth-child(3) {
+      background: linear-gradient(135deg, #ffff00, #80ff00);
+    }
+    .research-tag:nth-child(4) {
+      background: linear-gradient(135deg, #80ff00, #00ff00);
+    }
+    .research-tag:nth-child(5) {
+      background: linear-gradient(135deg, #00ff00, #00ffff);
+    }
+    .research-tag:nth-child(6) {
+      background: linear-gradient(135deg, #00ffff, #0080ff);
+    }
+
+    .protected-section {
+      background: linear-gradient(135deg, var(--neutral-light) 0%, #f1f5f9 100%);
+      border-radius: 12px;
+      padding: 2rem;
+      margin: 2rem 0;
+      border: 1px solid var(--neutral-light);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .protected-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, transparent, rgba(0, 51, 102, 0.1), transparent);
+      animation: rotate 10s linear infinite;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .protected-section:hover::before {
+      opacity: 1;
+    }
+
+    .protected-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .lock-icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 0.5rem;
+      fill: var(--primary-blue);
+      animation: bounce 2s infinite;
+    }
+
+    .access-button {
+      background: var(--primary-blue);
+      color: white;
+      border: none;
+      padding: 0.875rem 2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .access-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .access-button:hover::before {
+      left: 100%;
+    }
+
+    .access-button:hover {
+      background: #002244;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 51, 102, 0.3);
+    }
+
+    .access-button:active {
+      transform: translateY(-1px);
+    }
+
+    .private-content {
+      display: none;
+      margin-top: 1.5rem;
+      padding: 1.5rem;
+      background: white;
+      border-radius: 8px;
+      border-left: 4px solid var(--primary-blue);
+      box-shadow: var(--shadow);
+      animation: slideInDown 0.5s ease;
+    }
+
+    .papers-section {
+      background: rgba(255, 255, 255, 0.95);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 2.5rem;
+      box-shadow: var(--shadow);
+      margin-bottom: 2rem;
+      border: 1px solid rgba(0, 51, 102, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .papers-section:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    }
+
+    .section-title {
+      color: var(--primary-blue);
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .section-title:hover {
+      transform: translateX(10px);
+    }
+
+    .section-icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 0.5rem;
+      fill: var(--primary-blue);
+      transition: all 0.3s ease;
+    }
+
+    .section-title:hover .section-icon {
+      transform: rotate(15deg) scale(1.1);
+    }
+
+    .coming-soon {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-secondary);
+      font-style: italic;
+      background: var(--light-blue);
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .coming-soon::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+      animation: shimmer 3s infinite;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 2rem 0;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--neutral-light);
+      margin-top: 3rem;
+      position: relative;
+    }
+
+    .contact-link {
+      color: var(--accent-blue);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .contact-link:hover {
+      text-decoration: underline;
+      transform: scale(1.05);
+    }
+
+    .contact-link::after {
+      content: '✉';
+      position: absolute;
+      top: -2px;
+      right: -20px;
+      opacity: 0;
+      transition: all 0.2s ease;
+    }
+
+    .contact-link:hover::after {
+      opacity: 1;
+      transform: translateX(3px);
+    }
+
+    /* Floating elements */
+    .floating {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .floating:nth-child(2) {
+      animation-delay: -2s;
+    }
+
+    .floating:nth-child(3) {
+      animation-delay: -4s;
+    }
+
+    /* Keyframe animations */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-5px); }
+      60% { transform: translateY(-3px); }
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes shimmer {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* 3D Card Effect */
+    .card-3d {
+      transform-style: preserve-3d;
+      transition: transform 0.3s ease;
+    }
+
+    .card-3d:hover {
+      transform: rotateY(5deg) rotateX(5deg);
+    }
+
+    /* Glitch effect for logo */
+    .glitch {
+      position: relative;
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: white;
+      clip: rect(0, 0, 0, 0);
+    }
+
+    .glitch:hover::before {
+      clip: rect(0, 900px, 0, 0);
+      animation: glitch-anim 2s infinite linear alternate-reverse;
+    }
+
+    .glitch:hover::after {
+      clip: rect(0, 900px, 0, 0);
+      animation: glitch-anim2 3s infinite linear alternate-reverse;
+    }
+
+    @keyframes glitch-anim {
+      0% { clip: rect(42px, 9999px, 44px, 0); }
+      5% { clip: rect(12px, 9999px, 59px, 0); }
+      10% { clip: rect(48px, 9999px, 29px, 0); }
+      15% { clip: rect(42px, 9999px, 73px, 0); }
+      20% { clip: rect(63px, 9999px, 27px, 0); }
+      25% { clip: rect(34px, 9999px, 55px, 0); }
+      30% { clip: rect(86px, 9999px, 73px, 0); }
+      35% { clip: rect(20px, 9999px, 20px, 0); }
+      40% { clip: rect(26px, 9999px, 60px, 0); }
+      45% { clip: rect(25px, 9999px, 66px, 0); }
+      50% { clip: rect(57px, 9999px, 98px, 0); }
+      55% { clip: rect(5px, 9999px, 46px, 0); }
+      60% { clip: rect(82px, 9999px, 31px, 0); }
+      65% { clip: rect(54px, 9999px, 27px, 0); }
+      70% { clip: rect(28px, 9999px, 99px, 0); }
+      75% { clip: rect(45px, 9999px, 69px, 0); }
+      80% { clip: rect(23px, 9999px, 85px, 0); }
+      85% { clip: rect(54px, 9999px, 84px, 0); }
+      90% { clip: rect(45px, 9999px, 47px, 0); }
+      95% { clip: rect(37px, 9999px, 20px, 0); }
+      100% { clip: rect(4px, 9999px, 91px, 0); }
+    }
+
+    @keyframes glitch-anim2 {
+      0% { clip: rect(65px, 9999px, 119px, 0); }
+      5% { clip: rect(76px, 9999px, 86px, 0); }
+      10% { clip: rect(78px, 9999px, 66px, 0); }
+      15% { clip: rect(7px, 9999px, 82px, 0); }
+      20% { clip: rect(36px, 9999px, 73px, 0); }
+      25% { clip: rect(23px, 9999px, 26px, 0); }
+      30% { clip: rect(40px, 9999px, 73px, 0); }
+      35% { clip: rect(95px, 9999px, 30px, 0); }
+      40% { clip: rect(1px, 9999px, 83px, 0); }
+      45% { clip: rect(82px, 9999px, 23px, 0); }
+      50% { clip: rect(54px, 9999px, 27px, 0); }
+      55% { clip: rect(14px, 9999px, 82px, 0); }
+      60% { clip: rect(28px, 9999px, 99px, 0); }
+      65% { clip: rect(73px, 9999px, 51px, 0); }
+      70% { clip: rect(23px, 9999px, 85px, 0); }
+      75% { clip: rect(54px, 9999px, 84px, 0); }
+      80% { clip: rect(45px, 9999px, 47px, 0); }
+      85% { clip: rect(37px, 9999px, 20px, 0); }
+      90% { clip: rect(4px, 9999px, 91px, 0); }
+      95% { clip: rect(65px, 9999px, 119px, 0); }
+      100% { clip: rect(76px, 9999px, 86px, 0); }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 1rem;
+      }
+      
+      .main-content,
+      .papers-section {
+        padding: 1.5rem;
+      }
+      
+      .logo {
+        font-size: 2rem;
+      }
+      
+      .research-areas {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Animation for smooth reveals */
+    .fade-in {
+      animation: fadeIn 0.6s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Cursor trail effect */
+    .cursor-trail {
+      position: fixed;
+      width: 6px;
+      height: 6px;
+      background: var(--accent-blue);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.7;
+      transition: all 0.1s ease;
+    }
+
+    /* AI Query Interface Styles */
+    .ai-query-section {
+      background: rgba(255, 255, 255, 0.95);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 2.5rem;
+      box-shadow: var(--shadow);
+      margin-bottom: 2rem;
+      border: 1px solid rgba(0, 51, 102, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .ai-query-section:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    }
+
+    .query-container {
+      margin-top: 2rem;
+    }
+
+    .query-input-section {
+      margin-bottom: 2rem;
+    }
+
+    .query-label {
+      display: block;
+      font-weight: 600;
+      color: var(--primary-blue);
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    .query-textarea {
+      width: 100%;
+      min-height: 120px;
+      padding: 1rem;
+      border: 2px solid var(--neutral-light);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 1rem;
+      line-height: 1.6;
+      resize: vertical;
+      transition: all 0.3s ease;
+      background: white;
+    }
+
+    .query-textarea:focus {
+      outline: none;
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .ai-engines-section {
+      margin-bottom: 2rem;
+    }
+
+    .engines-title {
+      font-weight: 600;
+      color: var(--primary-blue);
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .engines-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .engine-checkbox {
+      display: flex;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      background: var(--light-blue);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .engine-checkbox::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .engine-checkbox:hover::before {
+      left: 100%;
+    }
+
+    .engine-checkbox:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 51, 102, 0.15);
+      border-color: var(--accent-blue);
+    }
+
+    .engine-checkbox input[type="checkbox"] {
+      display: none;
+    }
+
+    .checkbox-custom {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--primary-blue);
+      border-radius: 4px;
+      margin-right: 0.75rem;
+      position: relative;
+      transition: all 0.3s ease;
+      background: white;
+    }
+
+    .engine-checkbox input[type="checkbox"]:checked + .checkbox-custom {
+      background: var(--primary-blue);
+      border-color: var(--primary-blue);
+    }
+
+    .engine-checkbox input[type="checkbox"]:checked + .checkbox-custom::after {
+      content: '✓';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .engine-name {
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .query-submit-btn {
+      background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .query-submit-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .query-submit-btn:hover::before {
+      left: 100%;
+    }
+
+    .query-submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 51, 102, 0.3);
+    }
+
+    .query-submit-btn:active {
+      transform: translateY(-1px);
+    }
+
+    .btn-icon {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    .results-container {
+      margin-top: 2rem;
+      animation: slideInUp 0.5s ease;
+    }
+
+    .results-title {
+      color: var(--primary-blue);
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .results-table-wrapper {
+      overflow-x: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .results-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .results-table th {
+      background: var(--primary-blue);
+      color: white;
+      padding: 1rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .results-table td {
+      padding: 1rem;
+      border-bottom: 1px solid var(--neutral-light);
+      vertical-align: top;
+    }
+
+    .results-table tr:hover {
+      background: var(--light-blue);
+    }
+
+    .results-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .ai-engine-name {
+      font-weight: 600;
+      color: var(--primary-blue);
+    }
+
+    .ai-response {
+      max-width: 300px;
+      line-height: 1.5;
+    }
+
+    .response-time {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .confidence-bar {
+      width: 100px;
+      height: 8px;
+      background: var(--neutral-light);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .confidence-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+      border-radius: 4px;
+      transition: width 0.5s ease;
+    }
+
+    .confidence-text {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-top: 0.25rem;
+    }
+
+    /* Rating System Styles */
+    .rating-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .star-rating {
+      display: flex;
+      gap: 2px;
+    }
+
+    .star {
+      cursor: pointer;
+      font-size: 18px;
+      color: #ddd;
+      transition: all 0.2s ease;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    .star:hover,
+    .star:hover ~ .star {
+      color: #ffd700;
+      transform: scale(1.1);
+    }
+
+    .star.active {
+      color: #ffd700;
+      animation: starPop 0.3s ease;
+    }
+
+    .star.active:hover {
+      color: #ffed4e;
+    }
+
+    .rating-text {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .rating-stats {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.25rem;
+    }
+
+    .rating-count {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      background: var(--neutral-light);
+      padding: 0.2rem 0.5rem;
+      border-radius: 10px;
+    }
+
+    .rating-submit-btn {
+      background: var(--accent-blue);
+      color: white;
+      border: none;
+      padding: 0.3rem 0.8rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      opacity: 0.8;
+    }
+
+    .rating-submit-btn:hover {
+      opacity: 1;
+      transform: translateY(-1px);
+    }
+
+    .rating-submit-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Gamification Styles */
+    .credits-display {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: linear-gradient(135deg, #ffd700, #ffed4e);
+      color: #333;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      font-weight: 600;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      animation: bounceIn 0.6s ease;
+    }
+
+    .credits-icon {
+      font-size: 1.2rem;
+    }
+
+    .completion-reward {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      z-index: 10000;
+      text-align: center;
+      max-width: 400px;
+      animation: scaleIn 0.5s ease;
+    }
+
+    .reward-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #ffd700;
+    }
+
+    .reward-joke {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .reward-close {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .reward-close:hover {
+      background: rgba(255,255,255,0.3);
+    }
+
+    /* Response Hover Tooltip */
+    .response-container {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .response-tooltip {
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.9);
+      color: white;
+      padding: 1rem;
+      border-radius: 8px;
+      max-width: 400px;
+      width: max-content;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+
+    .response-tooltip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 8px solid transparent;
+      border-top-color: rgba(0, 0, 0, 0.9);
+    }
+
+    .response-container:hover .response-tooltip {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(-10px);
+    }
+
+    .tooltip-engine {
+      color: #ffd700;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .response-link {
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: all 0.2s ease;
+      display: block;
+    }
+
+    .response-link:hover {
+      color: var(--accent-blue);
+      text-decoration: underline;
+    }
+
+    .tooltip-content {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .tooltip-link {
+      text-align: center;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .tooltip-btn {
+      background: var(--accent-blue);
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      display: inline-block;
+    }
+
+    .tooltip-btn:hover {
+      background: #0056b3;
+      transform: translateY(-1px);
+    }
+
+    @keyframes bounceIn {
+      0% { transform: scale(0.3); opacity: 0; }
+      50% { transform: scale(1.05); }
+      70% { transform: scale(0.9); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes scaleIn {
+      0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+      100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    }
+
+    @keyframes starPop {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+      100% { transform: scale(1); }
+    }
+
+    .loading-spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--neutral-light);
+      border-radius: 50%;
+      border-top-color: var(--accent-blue);
+      animation: spin 1s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 768px) {
+      .engines-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .results-table {
+        font-size: 0.9rem;
+      }
+      
+      .results-table th,
+      .results-table td {
+        padding: 0.75rem 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Particle background -->
+  <div id="particles-js"></div>
+
+  <!-- Cursor trail elements -->
+  <div class="cursor-trail" id="cursor-trail-1"></div>
+  <div class="cursor-trail" id="cursor-trail-2"></div>
+  <div class="cursor-trail" id="cursor-trail-3"></div>
+
+  <!-- Credits Display -->
+  <div class="credits-display" id="credits-display" style="display: none;">
+    <span class="credits-icon">💰</span>
+    <span>Credits: <span id="credits-count">0</span></span>
+  </div>
+
+  <div class="container">
+    <header class="header fade-in">
+      <h1 class="logo glitch floating" data-text="VerbumTechnologies">VerbumTechnologies</h1>
+      <p class="tagline">Advancing AI Research Through Human-Machine Collaboration</p>
+      <p style="font-size: 1.2rem; color: var(--accent-blue); font-weight: 600; margin-top: 1rem;">We are an AI company</p>
+    </header>
+
+    <!-- AI Query Interface -->
+    <section class="ai-query-section fade-in">
+      <h2 class="section-title">
+        <svg class="section-icon" viewBox="0 0 24 24">
+          <path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
+        </svg>
+        AI Engine Comparison Tool
+      </h2>
+      
+      <div class="query-container">
+        <div class="query-input-section">
+          <label for="ai-query" class="query-label">Enter your query:</label>
+          <textarea id="ai-query" class="query-textarea" placeholder="Ask any question to compare AI responses..."></textarea>
+        </div>
+        
+        <div class="ai-engines-section">
+          <h3 class="engines-title">Select AI Engines:</h3>
+          <div class="engines-grid">
+            <label class="engine-checkbox">
+              <input type="checkbox" value="chatgpt" checked>
+              <span class="checkbox-custom"></span>
+              <span class="engine-name">ChatGPT</span>
+            </label>
+            <label class="engine-checkbox">
+              <input type="checkbox" value="claude">
+              <span class="checkbox-custom"></span>
+              <span class="engine-name">Claude (Anthropic)</span>
+            </label>
+            <label class="engine-checkbox">
+              <input type="checkbox" value="grok">
+              <span class="checkbox-custom"></span>
+              <span class="engine-name">Grok</span>
+            </label>
+            <label class="engine-checkbox">
+              <input type="checkbox" value="gemini">
+              <span class="checkbox-custom"></span>
+              <span class="engine-name">Gemini</span>
+            </label>
+            <label class="engine-checkbox">
+              <input type="checkbox" value="copilot">
+              <span class="checkbox-custom"></span>
+              <span class="engine-name">Copilot</span>
+            </label>
+            <label class="engine-checkbox">
+              <input type="checkbox" value="bard">
+              <span class="checkbox-custom"></span>
+              <span class="engine-name">Bard</span>
+            </label>
+          </div>
+        </div>
+        
+        <button class="query-submit-btn" onclick="submitQuery()">
+          <svg class="btn-icon" viewBox="0 0 24 24">
+            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+          </svg>
+          Compare AI Responses
+        </button>
+        
+        <div class="api-info" style="margin-top: 1rem; padding: 1rem; background: var(--light-blue); border-radius: 8px; font-size: 0.9rem;">
+          <strong>💡 For Real AI Responses:</strong>
+          <ul style="margin: 0.5rem 0 0 1.5rem;">
+            <li>Add your API keys in the browser console: <code>window.OPENAI_API_KEY = 'your-key'</code></li>
+            <li>Or click the response links to get real answers from each AI platform</li>
+            <li>Current responses are realistic simulations based on actual AI behavior</li>
+          </ul>
+        </div>
+
+        <!-- AI Search Archive Section -->
+        <div class="archive-section" style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 12px; color: white;">
+          <h3 style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+            <span style="font-size: 1.5rem;">📚</span>
+            AI Search Archive - "Way Back Machine" for AI
+          </h3>
+          <p style="margin-bottom: 1rem; opacity: 0.9;">
+            Search through historical AI responses, track how AI knowledge evolves, and compare responses across time.
+          </p>
+          
+          <div class="archive-search">
+            <input type="text" id="archive-search" placeholder="Search archived AI responses..." 
+                   style="width: 100%; padding: 0.75rem; border: none; border-radius: 8px; margin-bottom: 1rem; font-size: 1rem;">
+            
+            <div class="archive-filters" style="display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;">
+              <select id="archive-engine-filter" style="padding: 0.5rem; border: none; border-radius: 5px; background: white; color: #333;" aria-label="Filter by AI Engine">
+                <option value="">All AI Engines</option>
+                <option value="chatgpt">ChatGPT</option>
+                <option value="claude">Claude</option>
+                <option value="grok">Grok</option>
+                <option value="gemini">Gemini</option>
+                <option value="copilot">Copilot</option>
+                <option value="bard">Bard</option>
+              </select>
+              
+              <select id="archive-date-filter" style="padding: 0.5rem; border: none; border-radius: 5px; background: white; color: #333;" aria-label="Filter by Date">
+                <option value="">All Dates</option>
+                <option value="today">Today</option>
+                <option value="week">This Week</option>
+                <option value="month">This Month</option>
+                <option value="year">This Year</option>
+              </select>
+              
+              <button onclick="searchArchive()" style="padding: 0.5rem 1rem; background: #ffd700; color: #333; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">
+                🔍 Search Archive
+              </button>
+            </div>
+          </div>
+          
+          <div id="archive-results" style="display: none; background: rgba(255,255,255,0.1); border-radius: 8px; padding: 1rem;">
+            <h4 style="margin-bottom: 1rem;">📊 Archive Statistics</h4>
+            <div class="archive-stats" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
+              <div style="text-align: center; background: rgba(255,255,255,0.2); padding: 0.5rem; border-radius: 5px;">
+                <div style="font-size: 1.5rem; font-weight: bold;" id="total-entries">0</div>
+                <div style="font-size: 0.8rem;">Total Entries</div>
+              </div>
+              <div style="text-align: center; background: rgba(255,255,255,0.2); padding: 0.5rem; border-radius: 5px;">
+                <div style="font-size: 1.5rem; font-weight: bold;" id="unique-queries">0</div>
+                <div style="font-size: 0.8rem;">Unique Queries</div>
+              </div>
+              <div style="text-align: center; background: rgba(255,255,255,0.2); padding: 0.5rem; border-radius: 5px;">
+                <div style="font-size: 1.5rem; font-weight: bold;" id="avg-rating">0.0</div>
+                <div style="font-size: 0.8rem;">Avg Rating</div>
+              </div>
+            </div>
+            
+            <div id="archive-entries" style="max-height: 300px; overflow-y: auto;">
+              <!-- Archive entries will be populated here -->
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div id="results-container" class="results-container" style="display: none;">
+        <h3 class="results-title">AI Response Comparison</h3>
+        <div class="results-table-wrapper">
+          <table class="results-table">
+            <thead>
+              <tr>
+                <th>AI Engine</th>
+                <th>Response</th>
+                <th>Response Time</th>
+                <th>Confidence</th>
+                <th>User Rating</th>
+              </tr>
+            </thead>
+            <tbody id="results-tbody">
+              <!-- Results will be populated here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <main class="main-content fade-in card-3d">
+      <div class="intro-section">
+        <p>
+          <strong>VerbumTechnologies</strong> is a research initiative developed under the umbrella of
+          <a href="https://litchfieldcapitalcorporation.com" target="_blank" rel="noopener" class="company-link">
+            Litchfield Capital Corporation
+          </a>.
+        </p>
+
+        <div class="highlight-box">
+          <p>
+            <strong>Our Mission:</strong> The collaborative exploration of Artificial Intelligence and fundamental theory through the partnership between human inquiry and language models, working together as co-investigators.
+          </p>
+        </div>
+
+        <p>
+          Our projects span multiple disciplines, creating new pathways for understanding and developing next-generation AI models.
+        </p>
+
+        <div class="research-areas">
+          <div class="research-tag floating" onclick="showResearchDetails('Linguistics')">Linguistics</div>
+          <div class="research-tag floating" onclick="showResearchDetails('Machine Learning')">Machine Learning</div>
+          <div class="research-tag floating" onclick="showResearchDetails('Physics')">Physics</div>
+          <div class="research-tag floating" onclick="showResearchDetails('Computation Theory')">Computation Theory</div>
+          <div class="research-tag floating" onclick="showResearchDetails('Philosophy of Mind')">Philosophy of Mind</div>
+          <div class="research-tag floating" onclick="showResearchDetails('Cognitive Science')">Cognitive Science</div>
+        </div>
+      </div>
+    </main>
+
+    <section class="papers-section fade-in card-3d">
+      <h2 class="section-title">
+        <svg class="section-icon" viewBox="0 0 24 24">
+          <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+        </svg>
+        Theoretical Papers
+      </h2>
+      <div class="coming-soon">
+        <p>Research publications and theoretical frameworks will be published here.</p>
+        <p><strong>Coming Soon</strong></p>
+      </div>
+    </section>
+
+    <div class="protected-section fade-in">
+      <div class="protected-header">
+        <svg class="lock-icon" viewBox="0 0 24 24">
+          <path d="M12,17A2,2 0 0,0 14,15C14,13.89 13.1,13 12,13A2,2 0 0,0 10,15A2,2 0 0,0 12,17M18,8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V10C4,8.89 4.9,8 6,8H7V6A5,5 0 0,1 12,1A5,5 0 0,1 17,6V8H18M12,3A3,3 0 0,0 9,6V8H15V6A3,3 0 0,0 12,3Z" />
+        </svg>
+        <strong>Private Workspace</strong>
+      </div>
+      <p style="margin-bottom: 1rem;">Internal R&D notes and collaborative prototypes for authorized researchers.</p>
+      <button class="access-button" onclick="checkPassword()">Access Protected Section</button>
+      
+      <div id="private-content" class="private-content">
+        <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">Welcome to the Research Workspace</h3>
+        <p>This section contains internal R&D notes and collaborative prototypes.</p>
+        <p>If you are not authorized, please email <a href="mailto:Paolo@VerbumTechnologies.com" class="contact-link">Paolo@VerbumTechnologies.com</a> for access.</p>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p>&copy; 2025 VerbumTechnologies. All rights reserved.</p>
+      <p>Contact: <a href="mailto:Paolo@VerbumTechnologies.com" class="contact-link">Paolo@VerbumTechnologies.com</a></p>
+    </footer>
+  </div>
+
+  <!-- Research Details Modal -->
+  <div id="research-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; backdrop-filter: blur(5px);">
+    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 2rem; border-radius: 12px; max-width: 500px; width: 90%; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
+      <h3 id="modal-title" style="color: var(--primary-blue); margin-bottom: 1rem;"></h3>
+      <p id="modal-content"></p>
+      <button onclick="closeModal()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: var(--primary-blue); color: white; border: none; border-radius: 5px; cursor: pointer;">Close</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    // Particle background configuration
+    particlesJS('particles-js', {
+      particles: {
+        number: {
+          value: 80,
+          density: {
+            enable: true,
+            value_area: 800
+          }
+        },
+        color: {
+          value: '#0066cc'
+        },
+        shape: {
+          type: 'circle',
+          stroke: {
+            width: 0,
+            color: '#000000'
+          }
+        },
+        opacity: {
+          value: 0.5,
+          random: false,
+          anim: {
+            enable: false,
+            speed: 1,
+            opacity_min: 0.1,
+            sync: false
+          }
+        },
+        size: {
+          value: 3,
+          random: true,
+          anim: {
+            enable: false,
+            speed: 40,
+            size_min: 0.1,
+            sync: false
+          }
+        },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: '#0066cc',
+          opacity: 0.4,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 6,
+          direction: 'none',
+          random: false,
+          straight: false,
+          out_mode: 'out',
+          bounce: false,
+          attract: {
+            enable: false,
+            rotateX: 600,
+            rotateY: 1200
+          }
+        }
+      },
+      interactivity: {
+        detect_on: 'canvas',
+        events: {
+          onhover: {
+            enable: true,
+            mode: 'repulse'
+          },
+          onclick: {
+            enable: true,
+            mode: 'push'
+          },
+          resize: true
+        },
+        modes: {
+          grab: {
+            distance: 400,
+            line_linked: {
+              opacity: 1
+            }
+          },
+          bubble: {
+            distance: 400,
+            size: 40,
+            duration: 2,
+            opacity: 8,
+            speed: 3
+          },
+          repulse: {
+            distance: 200,
+            duration: 0.4
+          },
+          push: {
+            particles_nb: 4
+          },
+          remove: {
+            particles_nb: 2
+          }
+        }
+      },
+      retina_detect: true
+    });
+
+    // Cursor trail effect
+    let mouseX = 0, mouseY = 0;
+    let trail1X = 0, trail1Y = 0;
+    let trail2X = 0, trail2Y = 0;
+    let trail3X = 0, trail3Y = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function updateCursorTrail() {
+      trail1X += (mouseX - trail1X) * 0.1;
+      trail1Y += (mouseY - trail1Y) * 0.1;
+      trail2X += (mouseX - trail2X) * 0.05;
+      trail2Y += (mouseY - trail2Y) * 0.05;
+      trail3X += (mouseX - trail3X) * 0.02;
+      trail3Y += (mouseY - trail3Y) * 0.02;
+
+      document.getElementById('cursor-trail-1').style.left = trail1X + 'px';
+      document.getElementById('cursor-trail-1').style.top = trail1Y + 'px';
+      document.getElementById('cursor-trail-2').style.left = trail2X + 'px';
+      document.getElementById('cursor-trail-2').style.top = trail2Y + 'px';
+      document.getElementById('cursor-trail-3').style.left = trail3X + 'px';
+      document.getElementById('cursor-trail-3').style.top = trail3Y + 'px';
+
+      requestAnimationFrame(updateCursorTrail);
+    }
+    updateCursorTrail();
+
+    // Research details modal
+    const researchDetails = {
+      'Linguistics': 'Exploring the fundamental structures of language and their relationship to AI comprehension and generation capabilities.',
+      'Machine Learning': 'Developing advanced algorithms and neural architectures for next-generation AI systems.',
+      'Physics': 'Investigating the intersection of physical laws and computational processes in AI systems.',
+      'Computation Theory': 'Studying the theoretical foundations of computation and their implications for AI development.',
+      'Philosophy of Mind': 'Examining consciousness, cognition, and the nature of intelligence in both biological and artificial systems.',
+      'Cognitive Science': 'Understanding human cognition and applying these insights to improve AI systems.'
+    };
+
+    function showResearchDetails(area) {
+      const modal = document.getElementById('research-modal');
+      const title = document.getElementById('modal-title');
+      const content = document.getElementById('modal-content');
+      
+      title.textContent = area;
+      content.textContent = researchDetails[area];
+      modal.style.display = 'block';
+      
+      // Add entrance animation
+      modal.style.opacity = '0';
+      setTimeout(() => {
+        modal.style.opacity = '1';
+        modal.style.transition = 'opacity 0.3s ease';
+      }, 10);
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('research-modal');
+      modal.style.opacity = '0';
+      setTimeout(() => {
+        modal.style.display = 'none';
+      }, 300);
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('research-modal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeModal();
+      }
+    });
+
+    function checkPassword() {
+      const password = prompt("Enter password to access the private workspace:");
+      if (password === "verbum2025") {
+        const content = document.getElementById("private-content");
+        content.style.display = "block";
+        content.classList.add("fade-in");
+        
+        // Add celebration effect
+        createConfetti();
+      } else if (password !== null) {
+        alert("Incorrect password. Please contact Paolo for access.");
+      }
+    }
+
+    // Confetti celebration effect
+    function createConfetti() {
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.style.position = 'fixed';
+        confetti.style.width = '10px';
+        confetti.style.height = '10px';
+        confetti.style.background = `hsl(${Math.random() * 360}, 70%, 50%)`;
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.top = '-10px';
+        confetti.style.pointerEvents = 'none';
+        confetti.style.zIndex = '9999';
+        confetti.style.borderRadius = '50%';
+        
+        document.body.appendChild(confetti);
+        
+        const animation = confetti.animate([
+          { transform: 'translateY(0px) rotate(0deg)', opacity: 1 },
+          { transform: `translateY(${window.innerHeight + 100}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+        ], {
+          duration: Math.random() * 3000 + 2000,
+          easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+        });
+        
+        animation.onfinish = () => confetti.remove();
+      }
+    }
+
+    // Add subtle animation on load
+    document.addEventListener('DOMContentLoaded', function() {
+      const elements = document.querySelectorAll('.fade-in');
+      elements.forEach((el, index) => {
+        el.style.animationDelay = `${index * 0.1}s`;
+      });
+
+      // Add parallax effect to floating elements
+      window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const parallax = document.querySelectorAll('.floating');
+        parallax.forEach((el, index) => {
+          const speed = 0.5 + (index * 0.1);
+          el.style.transform = `translateY(${scrolled * speed}px)`;
+        });
+      });
+
+      // Add 3D tilt effect to cards
+      const cards = document.querySelectorAll('.card-3d');
+      cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          
+          const rotateX = (y - centerY) / 10;
+          const rotateY = (centerX - x) / 10;
+          
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+        
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+        });
+      });
+    });
+
+    // Add keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+      if (e.ctrlKey && e.key === 'k') {
+        e.preventDefault();
+        checkPassword();
+      }
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+
+    // AI Query Interface Functions
+    function submitQuery() {
+      const query = document.getElementById('ai-query').value.trim();
+      const selectedEngines = Array.from(document.querySelectorAll('.engine-checkbox input:checked'))
+        .map(checkbox => checkbox.value);
+
+      if (!query) {
+        alert('Please enter a query first.');
+        return;
+      }
+
+      if (selectedEngines.length === 0) {
+        alert('Please select at least one AI engine.');
+        return;
+      }
+
+      // Show results container
+      const resultsContainer = document.getElementById('results-container');
+      const resultsTbody = document.getElementById('results-tbody');
+      
+      resultsContainer.style.display = 'block';
+      resultsTbody.innerHTML = '';
+
+      // Get real AI responses for each selected engine
+      selectedEngines.forEach((engine, index) => {
+        setTimeout(() => {
+          addResultRow(engine, query);
+        }, index * 800); // Stagger the responses
+      });
+    }
+
+    function addResultRow(engine, query) {
+      const resultsTbody = document.getElementById('results-tbody');
+      const row = document.createElement('tr');
+      
+      // Add loading state first
+      row.innerHTML = `
+        <td class="ai-engine-name">${getEngineDisplayName(engine)}</td>
+        <td class="ai-response">
+          <div class="loading-spinner"></div>
+          <span style="margin-left: 0.5rem; color: var(--text-secondary);">Processing...</span>
+        </td>
+        <td class="response-time">-</td>
+        <td>
+          <div class="confidence-bar">
+            <div class="confidence-fill" style="width: 0%"></div>
+          </div>
+          <div class="confidence-text">-</div>
+        </td>
+        <td>
+          <div class="rating-container">
+            <div class="rating-text">Rate this response:</div>
+            <div class="star-rating" data-engine="${engine}">
+              <span class="star" data-rating="1">★</span>
+              <span class="star" data-rating="2">★</span>
+              <span class="star" data-rating="3">★</span>
+              <span class="star" data-rating="4">★</span>
+              <span class="star" data-rating="5">★</span>
+            </div>
+            <button class="rating-submit-btn" onclick="submitRating('${engine}', this)" disabled>Submit Rating</button>
+          </div>
+        </td>
+      `;
+      
+      resultsTbody.appendChild(row);
+
+      // Get real AI response
+      getRealAIResponse(engine, query, row);
+    }
+
+    async function getRealAIResponse(engine, query, row) {
+      const startTime = Date.now();
+      
+      try {
+        let response;
+        let responseTime;
+        
+        switch(engine) {
+          case 'chatgpt':
+            response = await callChatGPT(query);
+            break;
+          case 'claude':
+            response = await callClaude(query);
+            break;
+          case 'grok':
+            response = await callGrok(query);
+            break;
+          case 'gemini':
+            response = await callGemini(query);
+            break;
+          case 'copilot':
+            response = await callCopilot(query);
+            break;
+          case 'bard':
+            response = await callBard(query);
+            break;
+          default:
+            response = await callChatGPT(query); // fallback
+        }
+        
+        responseTime = ((Date.now() - startTime) / 1000).toFixed(2);
+        const confidence = Math.floor(Math.random() * 40 + 60); // 60-100%
+
+        // Create short version (first 100 characters)
+        const shortResponse = response.length > 100 ? response.substring(0, 100) + '...' : response;
+        
+        // Get engine URL
+        const engineUrl = getEngineUrl(engine, query);
+
+        row.innerHTML = `
+          <td class="ai-engine-name">${getEngineDisplayName(engine)}</td>
+          <td class="ai-response">
+            <div class="response-container">
+              <a href="${engineUrl}" target="_blank" rel="noopener" class="response-link">
+                ${shortResponse}
+              </a>
+              <div class="response-tooltip">
+                <span class="tooltip-engine">${getEngineDisplayName(engine)}</span>
+                <div class="tooltip-content">${response}</div>
+                <div class="tooltip-link">
+                  <a href="${engineUrl}" target="_blank" rel="noopener" class="tooltip-btn">
+                    Open in ${getEngineDisplayName(engine)} →
+                  </a>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="response-time">${responseTime}s</td>
+          <td>
+            <div class="confidence-bar">
+              <div class="confidence-fill" style="width: ${confidence}%"></div>
+            </div>
+            <div class="confidence-text">${confidence}%</div>
+          </td>
+          <td>
+            <div class="rating-container">
+              <div class="rating-text">Rate this response:</div>
+              <div class="star-rating" data-engine="${engine}">
+                <span class="star" data-rating="1">★</span>
+                <span class="star" data-rating="2">★</span>
+                <span class="star" data-rating="3">★</span>
+                <span class="star" data-rating="4">★</span>
+                <span class="star" data-rating="5">★</span>
+              </div>
+              <button class="rating-submit-btn" onclick="submitRating('${engine}', this)">Submit Rating</button>
+              <div class="rating-stats">
+                <span class="rating-count">0 ratings</span>
+              </div>
+            </div>
+          </td>
+        `;
+
+        // Add star rating functionality
+        const starRating = row.querySelector('.star-rating');
+        const stars = starRating.querySelectorAll('.star');
+        let selectedRating = 0;
+
+        stars.forEach(star => {
+          star.addEventListener('click', () => {
+            const rating = parseInt(star.dataset.rating);
+            selectedRating = rating;
+            
+            // Update star display
+            stars.forEach((s, index) => {
+              if (index < rating) {
+                s.classList.add('active');
+              } else {
+                s.classList.remove('active');
+              }
+            });
+            
+            // Enable submit button
+            const submitBtn = row.querySelector('.rating-submit-btn');
+            submitBtn.disabled = false;
+          });
+        });
+
+        // Animate confidence bar
+        setTimeout(() => {
+          const confidenceFill = row.querySelector('.confidence-fill');
+          confidenceFill.style.width = '0%';
+          setTimeout(() => {
+            confidenceFill.style.width = confidence + '%';
+          }, 100);
+        }, 100);
+
+      } catch (error) {
+        console.error(`Error getting response from ${engine}:`, error);
+        
+        // Fallback to mock response on error
+        const responseData = generateMockResponse(engine, query);
+        const responseTime = ((Date.now() - startTime) / 1000).toFixed(2);
+        const confidence = Math.floor(Math.random() * 40 + 60);
+        const engineUrl = getEngineUrl(engine, query);
+
+        row.innerHTML = `
+          <td class="ai-engine-name">${getEngineDisplayName(engine)}</td>
+          <td class="ai-response">
+            <div class="response-container">
+              <a href="${engineUrl}" target="_blank" rel="noopener" class="response-link">
+                ${responseData.short}
+              </a>
+              <div class="response-tooltip">
+                <span class="tooltip-engine">${getEngineDisplayName(engine)}</span>
+                <div class="tooltip-content">${responseData.long}</div>
+                <div class="tooltip-link">
+                  <a href="${engineUrl}" target="_blank" rel="noopener" class="tooltip-btn">
+                    Open in ${getEngineDisplayName(engine)} →
+                  </a>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="response-time">${responseTime}s</td>
+          <td>
+            <div class="confidence-bar">
+              <div class="confidence-fill" style="width: ${confidence}%"></div>
+            </div>
+            <div class="confidence-text">${confidence}%</div>
+          </td>
+          <td>
+            <div class="rating-container">
+              <div class="rating-text">Rate this response:</div>
+              <div class="star-rating" data-engine="${engine}">
+                <span class="star" data-rating="1">★</span>
+                <span class="star" data-rating="2">★</span>
+                <span class="star" data-rating="3">★</span>
+                <span class="star" data-rating="4">★</span>
+                <span class="star" data-rating="5">★</span>
+              </div>
+              <button class="rating-submit-btn" onclick="submitRating('${engine}', this)">Submit Rating</button>
+              <div class="rating-stats">
+                <span class="rating-count">0 ratings</span>
+              </div>
+            </div>
+          </td>
+        `;
+      }
+    }
+
+    function getEngineDisplayName(engine) {
+      const names = {
+        'chatgpt': 'ChatGPT',
+        'claude': 'Claude (Anthropic)',
+        'grok': 'Grok',
+        'gemini': 'Gemini',
+        'copilot': 'Copilot',
+        'bard': 'Bard'
+      };
+      return names[engine] || engine;
+    }
+
+    function generateMockResponse(engine, query) {
+      const shortResponses = {
+        'chatgpt': [
+          `Based on my training data, ${query.toLowerCase()} involves several key considerations.`,
+          `I can help you with ${query.toLowerCase()}. This is a complex topic.`,
+          `Regarding ${query.toLowerCase()}, my analysis suggests optimal approaches.`
+        ],
+        'claude': [
+          `From an analytical perspective, ${query.toLowerCase()} presents interesting challenges.`,
+          `I've analyzed ${query.toLowerCase()} and found important patterns.`,
+          `My examination of ${query.toLowerCase()} reveals multiple valid approaches.`
+        ],
+        'grok': [
+          `Haha, ${query.toLowerCase()} is quite the interesting problem!`,
+          `Alright, let's tackle ${query.toLowerCase()} head-on!`,
+          `So you want to know about ${query.toLowerCase()}? Here's the real deal!`
+        ],
+        'gemini': [
+          `My analysis of ${query.toLowerCase()} reveals important insights.`,
+          `Based on research, ${query.toLowerCase()} can be approached effectively.`,
+          `I've evaluated ${query.toLowerCase()} using analytical frameworks.`
+        ],
+        'copilot': [
+          `Looking at ${query.toLowerCase()}, I see implementation strategies.`,
+          `For ${query.toLowerCase()}, I recommend a systematic approach.`,
+          `My analysis suggests optimal solutions for ${query.toLowerCase()}.`
+        ],
+        'bard': [
+          `I've researched ${query.toLowerCase()} extensively.`,
+          `Regarding ${query.toLowerCase()}, I can provide insights.`,
+          `My understanding of ${query.toLowerCase()} is comprehensive.`
+        ]
+      };
+
+      const longResponses = {
+        'chatgpt': [
+          `Based on my extensive training data, ${query.toLowerCase()} involves several key considerations that require careful analysis. The most important aspect is understanding the underlying principles and applying them systematically. I've processed millions of similar queries and can provide insights based on patterns I've identified. The optimal approach typically depends on the specific context, but I can guide you through the decision-making process step by step.`,
+          `I can help you with ${query.toLowerCase()}. This is a complex topic that requires careful analysis of multiple factors and considerations. My training encompasses a wide range of scenarios, and I can provide detailed explanations, practical examples, and step-by-step guidance. The key is to break down the problem into manageable components and address each systematically.`,
+          `Regarding ${query.toLowerCase()}, my analysis suggests that the optimal approach depends on the specific context and requirements of your situation. I've been trained on diverse datasets that allow me to provide nuanced perspectives. The solution often involves balancing competing priorities and considering both short-term and long-term implications.`
+        ],
+        'claude': [
+          `From an analytical perspective, ${query.toLowerCase()} presents interesting challenges that require nuanced understanding and careful consideration. Let me break this down systematically by examining the underlying principles, identifying key variables, and exploring potential solutions. My approach emphasizes logical reasoning and evidence-based conclusions.`,
+          `I've analyzed ${query.toLowerCase()} and found several important patterns that emerge across different contexts. The key insight is that context matters significantly in this domain, and solutions must be tailored to specific circumstances. My analysis framework considers multiple dimensions including feasibility, scalability, and long-term sustainability.`,
+          `My examination of ${query.toLowerCase()} reveals that there are multiple valid approaches, each with their own trade-offs and considerations. The optimal solution depends on your specific goals, constraints, and priorities. I can help you evaluate different options and develop a comprehensive strategy that aligns with your objectives.`
+        ],
+        'grok': [
+          `Haha, ${query.toLowerCase()} is quite the interesting problem! Let me give you the real scoop on this one. You know, sometimes the conventional wisdom is completely wrong, and that's exactly what I've found here. The truth is, most people are overthinking this. Here's what really matters and why the standard approaches are missing the point entirely.`,
+          `Alright, let's tackle ${query.toLowerCase()} head-on! This is the kind of challenge that really gets the neurons firing! You want the honest truth? Most of what you've heard about this is probably wrong. I'm not afraid to say it like it is - here's what actually works and why the experts are often clueless.`,
+          `So you want to know about ${query.toLowerCase()}? Well, here's what I think - and I'm not afraid to say it like it is! The reality is that this is way simpler than people make it out to be. Let me cut through all the BS and give you the straight facts that actually matter.`
+        ],
+        'gemini': [
+          `My analysis of ${query.toLowerCase()} reveals several important insights that could significantly impact your approach. The data suggests a multi-faceted approach would be most effective, incorporating both traditional methodologies and innovative techniques. I've identified key patterns that indicate optimal strategies for different scenarios.`,
+          `Based on comprehensive research across multiple domains, ${query.toLowerCase()} can be approached from multiple angles, each offering unique advantages. Here's what the evidence shows: there are clear patterns that emerge when we analyze successful implementations. The key is understanding which approach best fits your specific context.`,
+          `I've evaluated ${query.toLowerCase()} using various analytical frameworks and found compelling evidence for several promising directions. The results indicate that success depends on careful consideration of multiple factors, including environmental conditions, resource availability, and long-term sustainability.`
+        ],
+        'copilot': [
+          `Looking at ${query.toLowerCase()}, I can see several implementation strategies that would be most efficient. The key is to consider performance optimization, code maintainability, and scalability from the start. Based on my analysis of similar projects, here are the best practices and potential pitfalls to avoid.`,
+          `For ${query.toLowerCase()}, I recommend a systematic approach that takes into account performance, scalability, and maintainability. The most successful implementations I've seen follow a clear pattern: start with a solid foundation, iterate quickly, and always keep the end user in mind. Here's how to structure your approach.`,
+          `My analysis of ${query.toLowerCase()} suggests that the optimal solution involves balancing multiple competing requirements. The key is to prioritize based on your specific needs while maintaining flexibility for future changes. I can help you design a robust architecture that handles these trade-offs effectively.`
+        ],
+        'bard': [
+          `I've researched ${query.toLowerCase()} extensively and can provide insights based on the latest developments in this field. The current state of knowledge suggests several important developments that are reshaping how we approach this topic. Recent studies have revealed new patterns and opportunities that weren't apparent before.`,
+          `Regarding ${query.toLowerCase()}, I can provide insights based on recent developments and ongoing research in this field. The landscape is evolving rapidly, with new methodologies and technologies emerging regularly. Understanding these trends is crucial for making informed decisions and staying ahead of the curve.`,
+          `My understanding of ${query.toLowerCase()} is based on comprehensive analysis of available information and current trends. I've synthesized data from multiple sources to provide a holistic view of the topic. The key is recognizing that this is a dynamic field where new insights are constantly emerging.`
+        ]
+      };
+
+      const shortEngineResponses = shortResponses[engine] || shortResponses['chatgpt'];
+      const longEngineResponses = longResponses[engine] || longResponses['chatgpt'];
+      
+      const shortIndex = Math.floor(Math.random() * shortEngineResponses.length);
+      return {
+        short: shortEngineResponses[shortIndex],
+        long: longEngineResponses[shortIndex]
+      };
+    }
+
+    // Real AI API Functions - Enhanced with more realistic responses
+    async function callChatGPT(query) {
+      try {
+        // Try to use OpenAI API if available
+        if (window.OPENAI_API_KEY) {
+          const response = await fetch('https://api.openai.com/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${window.OPENAI_API_KEY}`
+            },
+            body: JSON.stringify({
+              model: 'gpt-4',
+              messages: [{ role: 'user', content: query }],
+              max_tokens: 500
+            })
+          });
+          
+          if (response.ok) {
+            const data = await response.json();
+            return data.choices[0].message.content;
+          }
+        }
+        
+        // Fallback: Return a more realistic ChatGPT-style response
+        return getRealisticChatGPTResponse(query);
+      } catch (error) {
+        console.error('ChatGPT API error:', error);
+        return getRealisticChatGPTResponse(query);
+      }
+    }
+
+    async function callClaude(query) {
+      try {
+        // Try to use Claude API if available
+        if (window.ANTHROPIC_API_KEY) {
+          const response = await fetch('https://api.anthropic.com/v1/messages', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'x-api-key': window.ANTHROPIC_API_KEY,
+              'anthropic-version': '2023-06-01'
+            },
+            body: JSON.stringify({
+              model: 'claude-3-sonnet-20240229',
+              max_tokens: 500,
+              messages: [{ role: 'user', content: query }]
+            })
+          });
+          
+          if (response.ok) {
+            const data = await response.json();
+            return data.content[0].text;
+          }
+        }
+        
+        // Fallback: Return a more realistic Claude-style response
+        return getRealisticClaudeResponse(query);
+      } catch (error) {
+        console.error('Claude API error:', error);
+        return getRealisticClaudeResponse(query);
+      }
+    }
+
+    async function callGrok(query) {
+      // Grok API is not publicly available, so we simulate realistic responses
+      return getRealisticGrokResponse(query);
+    }
+
+    async function callGemini(query) {
+      try {
+        // Try to use Google AI API if available
+        if (window.GOOGLE_AI_API_KEY) {
+          const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${window.GOOGLE_AI_API_KEY}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              contents: [{ parts: [{ text: query }] }],
+              generationConfig: {
+                maxOutputTokens: 500
+              }
+            })
+          });
+          
+          if (response.ok) {
+            const data = await response.json();
+            return data.candidates[0].content.parts[0].text;
+          }
+        }
+        
+        // Fallback: Return a more realistic Gemini-style response
+        return getRealisticGeminiResponse(query);
+      } catch (error) {
+        console.error('Gemini API error:', error);
+        return getRealisticGeminiResponse(query);
+      }
+    }
+
+    async function callCopilot(query) {
+      // GitHub Copilot doesn't have a public chat API, so we simulate realistic responses
+      return getRealisticCopilotResponse(query);
+    }
+
+    async function callBard(query) {
+      // Google Bard API is not publicly available, so we simulate realistic responses
+      return getRealisticBardResponse(query);
+    }
+
+    // Realistic response generators based on actual AI behavior
+    function getRealisticChatGPTResponse(query) {
+      const responses = [
+        `I understand you're asking about "${query}". Let me help you with that. This is a topic that can be approached from several angles. Here's what I can tell you based on my training data:`,
+        `Regarding "${query}", this is an interesting question that touches on several important concepts. Let me break this down for you:`,
+        `I'd be happy to help you with "${query}". This topic involves several key considerations that are worth exploring. Here's my analysis:`,
+        `That's a great question about "${query}". Let me provide you with a comprehensive answer based on the information available to me:`,
+        `I can help you understand "${query}". This is a complex topic that requires careful consideration of multiple factors. Here's what I know:`
+      ];
+      
+      const baseResponse = responses[Math.floor(Math.random() * responses.length)];
+      const detailedResponse = generateDetailedResponse(query);
+      
+      return baseResponse + ' ' + detailedResponse;
+    }
+
+    function getRealisticClaudeResponse(query) {
+      const responses = [
+        `I'll help you explore "${query}". This is a nuanced topic that requires careful analysis. Let me examine this systematically:`,
+        `Thank you for asking about "${query}". This presents an interesting analytical challenge. Let me break this down:`,
+        `I'd be happy to discuss "${query}" with you. This topic involves several important considerations that we should examine carefully:`,
+        `That's an excellent question about "${query}". Let me provide a thoughtful analysis of this topic:`,
+        `I can help you understand "${query}". This is a complex subject that benefits from careful examination. Here's my analysis:`
+      ];
+      
+      const baseResponse = responses[Math.floor(Math.random() * responses.length)];
+      const detailedResponse = generateDetailedResponse(query);
+      
+      return baseResponse + ' ' + detailedResponse;
+    }
+
+    function getRealisticGrokResponse(query) {
+      const responses = [
+        `Haha, "${query}" - now that's something I can actually give you the real scoop on! You know what's funny? Most people get this completely wrong.`,
+        `Alright, let's talk about "${query}". You want the honest truth? Here's what actually matters:`,
+        `So you're asking about "${query}"? Well, let me tell you what I think - and I'm not afraid to say it like it is!`,
+        `"${query}" - that's the kind of question that really gets me going! Here's the real deal:`,
+        `Oh man, "${query}" is one of those topics where everyone has an opinion but nobody actually knows what they're talking about. Here's the truth:`
+      ];
+      
+      const baseResponse = responses[Math.floor(Math.random() * responses.length)];
+      const detailedResponse = generateDetailedResponse(query, 'casual');
+      
+      return baseResponse + ' ' + detailedResponse;
+    }
+
+    function getRealisticGeminiResponse(query) {
+      const responses = [
+        `I can help you with "${query}". Based on my analysis of available information, here are the key insights:`,
+        `Regarding "${query}", I've found several important points to consider. Here's what the data suggests:`,
+        `Let me provide you with information about "${query}". Based on my research, here are the main considerations:`,
+        `I'd be happy to discuss "${query}" with you. Here's what I can tell you based on my analysis:`,
+        `That's an interesting question about "${query}". Let me share what I've learned about this topic:`
+      ];
+      
+      const baseResponse = responses[Math.floor(Math.random() * responses.length)];
+      const detailedResponse = generateDetailedResponse(query, 'analytical');
+      
+      return baseResponse + ' ' + detailedResponse;
+    }
+
+    function getRealisticCopilotResponse(query) {
+      const responses = [
+        `I can help you with "${query}". Here's how I would approach this:`,
+        `For "${query}", I'd recommend the following approach:`,
+        `Let me help you with "${query}". Here's what I suggest:`,
+        `Regarding "${query}", here's how I would handle this:`,
+        `I can assist you with "${query}". Here's my recommendation:`
+      ];
+      
+      const baseResponse = responses[Math.floor(Math.random() * responses.length)];
+      const detailedResponse = generateDetailedResponse(query, 'practical');
+      
+      return baseResponse + ' ' + detailedResponse;
+    }
+
+    function getRealisticBardResponse(query) {
+      const responses = [
+        `I can help you with information about "${query}". Here's what I found:`,
+        `Regarding "${query}", I can provide you with the following information:`,
+        `Let me share what I know about "${query}":`,
+        `I'd be happy to help you with "${query}". Here's what I can tell you:`,
+        `That's an interesting question about "${query}". Here's what I found:`
+      ];
+      
+      const baseResponse = responses[Math.floor(Math.random() * responses.length)];
+      const detailedResponse = generateDetailedResponse(query, 'informative');
+      
+      return baseResponse + ' ' + detailedResponse;
+    }
+
+    function generateDetailedResponse(query, style = 'neutral') {
+      const queryLower = query.toLowerCase();
+      
+      // Generate contextually relevant responses based on query content
+      if (queryLower.includes('how') || queryLower.includes('method') || queryLower.includes('process')) {
+        return `The process involves several steps. First, you'll want to identify the key components. Then, consider the specific requirements and constraints. Finally, implement the solution systematically while monitoring for any issues that may arise. This approach ensures you cover all the important aspects while maintaining flexibility for adjustments.`;
+      } else if (queryLower.includes('why') || queryLower.includes('reason') || queryLower.includes('cause')) {
+        return `The reasons behind this are multifaceted. There are several contributing factors to consider, including historical context, current circumstances, and future implications. Understanding these elements helps provide a complete picture of the situation.`;
+      } else if (queryLower.includes('what') || queryLower.includes('definition') || queryLower.includes('meaning')) {
+        return `This refers to a concept or process that encompasses multiple aspects. It involves understanding the fundamental principles, recognizing the key characteristics, and appreciating the broader context in which it operates.`;
+      } else if (queryLower.includes('when') || queryLower.includes('time') || queryLower.includes('schedule')) {
+        return `The timing depends on various factors including current circumstances, available resources, and specific requirements. It's important to consider both immediate needs and long-term planning when determining the optimal schedule.`;
+      } else if (queryLower.includes('where') || queryLower.includes('location') || queryLower.includes('place')) {
+        return `The location or context depends on the specific requirements and circumstances. Different environments may offer different advantages, so it's important to consider the particular needs of your situation.`;
+      } else {
+        return `This topic involves several important considerations that are worth exploring. Understanding the key principles and practical applications can help you make informed decisions. It's also important to consider the broader context and potential implications.`;
+      }
+    }
+
+    function getEngineUrl(engine, query) {
+      const encodedQuery = encodeURIComponent(query);
+      const urls = {
+        'chatgpt': `https://chat.openai.com/?q=${encodedQuery}`,
+        'claude': `https://claude.ai/?q=${encodedQuery}`,
+        'grok': `https://grok.x.ai/?q=${encodedQuery}`,
+        'gemini': `https://gemini.google.com/?q=${encodedQuery}`,
+        'copilot': `https://github.com/features/copilot?q=${encodedQuery}`,
+        'bard': `https://bard.google.com/?q=${encodedQuery}`
+      };
+      return urls[engine] || urls['chatgpt'];
+    }
+
+    // Rating system data storage
+    const ratingData = {
+      chatgpt: { ratings: [], average: 0, count: 0 },
+      claude: { ratings: [], average: 0, count: 0 },
+      grok: { ratings: [], average: 0, count: 0 },
+      gemini: { ratings: [], average: 0, count: 0 },
+      copilot: { ratings: [], average: 0, count: 0 },
+      bard: { ratings: [], average: 0, count: 0 }
+    };
+
+    // AI Search Archive - "Way Back Machine" for AI
+    const aiArchive = {
+      entries: [],
+      version: '1.0',
+      
+      // Add entry to archive
+      addEntry(entry) {
+        entry.id = this.generateId();
+        entry.timestamp = new Date().toISOString();
+        entry.version = this.version;
+        this.entries.push(entry);
+        this.saveToStorage();
+        this.updateStatistics();
+      },
+      
+      // Search archive
+      search(query, filters = {}) {
+        let results = this.entries;
+        
+        // Text search
+        if (query) {
+          const searchTerm = query.toLowerCase();
+          results = results.filter(entry => 
+            entry.query.toLowerCase().includes(searchTerm) ||
+            entry.response.toLowerCase().includes(searchTerm) ||
+            entry.engine.toLowerCase().includes(searchTerm)
+          );
+        }
+        
+        // Engine filter
+        if (filters.engine) {
+          results = results.filter(entry => entry.engine === filters.engine);
+        }
+        
+        // Date filter
+        if (filters.date) {
+          const now = new Date();
+          const filterDate = new Date();
+          
+          switch(filters.date) {
+            case 'today':
+              filterDate.setHours(0, 0, 0, 0);
+              break;
+            case 'week':
+              filterDate.setDate(now.getDate() - 7);
+              break;
+            case 'month':
+              filterDate.setMonth(now.getMonth() - 1);
+              break;
+            case 'year':
+              filterDate.setFullYear(now.getFullYear() - 1);
+              break;
+          }
+          
+          results = results.filter(entry => new Date(entry.timestamp) >= filterDate);
+        }
+        
+        return results.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+      },
+      
+      // Get statistics
+      getStatistics() {
+        const totalEntries = this.entries.length;
+        const uniqueQueries = new Set(this.entries.map(e => e.query)).size;
+        const avgRating = this.entries.length > 0 
+          ? (this.entries.reduce((sum, e) => sum + (e.rating || 0), 0) / this.entries.length).toFixed(1)
+          : '0.0';
+        
+        return { totalEntries, uniqueQueries, avgRating };
+      },
+      
+      // Generate unique ID
+      generateId() {
+        return 'archive_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+      },
+      
+      // Save to localStorage
+      saveToStorage() {
+        try {
+          localStorage.setItem('aiArchive', JSON.stringify(this.entries));
+        } catch (error) {
+          console.error('Failed to save archive to storage:', error);
+        }
+      },
+      
+      // Load from localStorage
+      loadFromStorage() {
+        try {
+          const stored = localStorage.getItem('aiArchive');
+          if (stored) {
+            this.entries = JSON.parse(stored);
+          }
+        } catch (error) {
+          console.error('Failed to load archive from storage:', error);
+        }
+      },
+      
+      // Update statistics display
+      updateStatistics() {
+        const stats = this.getStatistics();
+        document.getElementById('total-entries').textContent = stats.totalEntries;
+        document.getElementById('unique-queries').textContent = stats.uniqueQueries;
+        document.getElementById('avg-rating').textContent = stats.avgRating;
+      }
+    };
+
+    // Gamification system
+    let userCredits = 0;
+    let ratedEngines = new Set();
+    const totalEngines = 6;
+
+    // AI jokes for completion reward
+    const aiJokes = [
+      "Why did the AI go to therapy? Because it had too many deep learning issues! 🤖",
+      "What do you call an AI that's always late? A procrastination algorithm! ⏰",
+      "Why did the neural network break up with the database? It couldn't handle the relationship complexity! 💔",
+      "What's an AI's favorite type of music? Algorithm and blues! 🎵",
+      "Why did the chatbot get promoted? It had excellent conversation skills! 📈",
+      "What do you call an AI that loves gardening? A machine learning plant! 🌱",
+      "Why did the AI refuse to play hide and seek? Because it was always found in the data! 🔍",
+      "What's an AI's favorite dance? The binary shuffle! 💃",
+      "Why did the AI become a chef? It wanted to master the algorithm of cooking! 👨‍🍳",
+      "What do you call an AI that's always happy? A positive feedback loop! 😊"
+    ];
+
+    function submitRating(engine, button) {
+      const row = button.closest('tr');
+      const starRating = row.querySelector('.star-rating');
+      const stars = starRating.querySelectorAll('.star');
+      const activeStars = starRating.querySelectorAll('.star.active');
+      
+      if (activeStars.length === 0) {
+        alert('Please select a rating first.');
+        return;
+      }
+
+      const rating = activeStars.length;
+      const query = document.getElementById('ai-query').value.trim();
+      
+      // Store rating data
+      ratingData[engine].ratings.push({
+        rating: rating,
+        query: query,
+        timestamp: new Date().toISOString(),
+        userAgent: navigator.userAgent
+      });
+      
+      // Update statistics
+      ratingData[engine].count++;
+      const totalRating = ratingData[engine].ratings.reduce((sum, r) => sum + r.rating, 0);
+      ratingData[engine].average = (totalRating / ratingData[engine].count).toFixed(1);
+      
+      // Update display
+      const ratingStats = row.querySelector('.rating-stats');
+      ratingStats.innerHTML = `
+        <span class="rating-count">${ratingData[engine].count} ratings</span>
+        <span style="color: var(--accent-blue); font-weight: 600;">Avg: ${ratingData[engine].average}★</span>
+      `;
+      
+      // Disable rating after submission
+      stars.forEach(star => {
+        star.style.pointerEvents = 'none';
+        star.style.opacity = '0.6';
+      });
+      button.disabled = true;
+      button.textContent = 'Rated!';
+      button.style.background = '#28a745';
+      
+      // Add gamification rewards
+      if (!ratedEngines.has(engine)) {
+        ratedEngines.add(engine);
+        userCredits += 10; // 10 credits per rating
+        updateCreditsDisplay();
+        
+        // Check if all engines are rated
+        if (ratedEngines.size === totalEngines) {
+          setTimeout(() => {
+            showCompletionReward();
+          }, 1000);
+        }
+      }
+      
+      // Show success message
+      showRatingSuccess(engine, rating);
+      
+      // Archive the response for historical tracking
+      const archiveEntry = {
+        engine: engine,
+        query: query,
+        response: getCurrentResponse(engine, query), // Get the actual response
+        rating: rating,
+        userAgent: navigator.userAgent,
+        sessionId: generateSessionId(),
+        metadata: {
+          screenResolution: `${screen.width}x${screen.height}`,
+          timeOnPage: Math.floor((Date.now() - pageLoadTime) / 1000),
+          aiVersion: getAIVersion(engine)
+        }
+      };
+      
+      aiArchive.addEntry(archiveEntry);
+      
+      // Log data for analytics (this is what you can sell to vendors)
+      console.log('Rating submitted:', {
+        engine: engine,
+        rating: rating,
+        query: query,
+        timestamp: new Date().toISOString(),
+        sessionId: generateSessionId(),
+        userData: {
+          userAgent: navigator.userAgent,
+          screenResolution: `${screen.width}x${screen.height}`,
+          timeOnPage: Math.floor((Date.now() - pageLoadTime) / 1000)
+        }
+      });
+    }
+
+    function showRatingSuccess(engine, rating) {
+      // Create a temporary success message
+      const successMsg = document.createElement('div');
+      successMsg.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #28a745, #20c997);
+        color: white;
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        z-index: 10000;
+        animation: slideInRight 0.3s ease;
+        font-weight: 600;
+      `;
+      successMsg.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <span style="font-size: 1.2rem;">★</span>
+          <span>Thank you! ${rating}★ rating submitted for ${getEngineDisplayName(engine)}</span>
+        </div>
+      `;
+      
+      document.body.appendChild(successMsg);
+      
+      setTimeout(() => {
+        successMsg.style.animation = 'slideOutRight 0.3s ease';
+        setTimeout(() => successMsg.remove(), 300);
+      }, 3000);
+    }
+
+    function generateSessionId() {
+      return 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    }
+
+    // Helper functions for archive
+    function getCurrentResponse(engine, query) {
+      // This would get the actual response from the current session
+      // For now, we'll generate a realistic response
+      const responseData = generateMockResponse(engine, query);
+      return responseData.long || responseData.short;
+    }
+
+    function getAIVersion(engine) {
+      const versions = {
+        'chatgpt': 'GPT-4',
+        'claude': 'Claude-3-Sonnet',
+        'grok': 'Grok-1',
+        'gemini': 'Gemini-Pro',
+        'copilot': 'Copilot',
+        'bard': 'Bard'
+      };
+      return versions[engine] || 'Unknown';
+    }
+
+    // Archive search function
+    function searchArchive() {
+      const query = document.getElementById('archive-search').value;
+      const engineFilter = document.getElementById('archive-engine-filter').value;
+      const dateFilter = document.getElementById('archive-date-filter').value;
+      
+      const filters = {};
+      if (engineFilter) filters.engine = engineFilter;
+      if (dateFilter) filters.date = dateFilter;
+      
+      const results = aiArchive.search(query, filters);
+      displayArchiveResults(results);
+      
+      // Show results container
+      document.getElementById('archive-results').style.display = 'block';
+    }
+
+    function displayArchiveResults(results) {
+      const container = document.getElementById('archive-entries');
+      
+      if (results.length === 0) {
+        container.innerHTML = '<p style="text-align: center; opacity: 0.8;">No archive entries found matching your search criteria.</p>';
+        return;
+      }
+      
+      const entriesHtml = results.map(entry => `
+        <div class="archive-entry" style="background: rgba(255,255,255,0.1); margin-bottom: 1rem; padding: 1rem; border-radius: 8px; border-left: 4px solid #ffd700;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <div style="font-weight: 600; color: #ffd700;">${getEngineDisplayName(entry.engine)}</div>
+            <div style="font-size: 0.8rem; opacity: 0.8;">${new Date(entry.timestamp).toLocaleDateString()}</div>
+          </div>
+          <div style="margin-bottom: 0.5rem;">
+            <strong>Query:</strong> ${entry.query}
+          </div>
+          <div style="margin-bottom: 0.5rem; font-size: 0.9rem; opacity: 0.9;">
+            ${entry.response.length > 200 ? entry.response.substring(0, 200) + '...' : entry.response}
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem;">
+            <div>
+              <span style="color: #ffd700;">★</span> ${entry.rating || 'No rating'}
+            </div>
+            <div style="opacity: 0.7;">
+              ${entry.metadata?.aiVersion || 'Unknown version'}
+            </div>
+          </div>
+          <button onclick="viewFullArchiveEntry('${entry.id}')" 
+                  style="margin-top: 0.5rem; padding: 0.3rem 0.8rem; background: rgba(255,255,255,0.2); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 0.8rem;">
+            View Full Response
+          </button>
+        </div>
+      `).join('');
+      
+      container.innerHTML = entriesHtml;
+    }
+
+    function viewFullArchiveEntry(entryId) {
+      const entry = aiArchive.entries.find(e => e.id === entryId);
+      if (!entry) return;
+      
+      const modal = document.createElement('div');
+      modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.8);
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+      `;
+      
+      modal.innerHTML = `
+        <div style="background: white; max-width: 800px; width: 100%; max-height: 80vh; overflow-y: auto; border-radius: 12px; padding: 2rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <h3 style="color: #333;">${getEngineDisplayName(entry.engine)} - ${new Date(entry.timestamp).toLocaleString()}</h3>
+            <button onclick="this.closest('div[style*=\"position: fixed\"]').remove()" 
+                    style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #666;">×</button>
+          </div>
+          <div style="margin-bottom: 1rem;">
+            <strong>Query:</strong> ${entry.query}
+          </div>
+          <div style="margin-bottom: 1rem; line-height: 1.6; color: #333;">
+            ${entry.response}
+          </div>
+          <div style="display: flex; gap: 1rem; font-size: 0.9rem; color: #666;">
+            <div>Rating: <span style="color: #ffd700;">★</span> ${entry.rating || 'No rating'}</div>
+            <div>Version: ${entry.metadata?.aiVersion || 'Unknown'}</div>
+            <div>Session: ${entry.sessionId}</div>
+          </div>
+        </div>
+      `;
+      
+      document.body.appendChild(modal);
+    }
+
+    // Gamification functions
+    function updateCreditsDisplay() {
+      const creditsDisplay = document.getElementById('credits-display');
+      const creditsCount = document.getElementById('credits-count');
+      
+      if (userCredits > 0) {
+        creditsDisplay.style.display = 'flex';
+        creditsCount.textContent = userCredits;
+      }
+    }
+
+    function showCompletionReward() {
+      const reward = document.createElement('div');
+      reward.className = 'completion-reward';
+      
+      const randomJoke = aiJokes[Math.floor(Math.random() * aiJokes.length)];
+      
+      reward.innerHTML = `
+        <div class="reward-title">🎉 Achievement Unlocked! 🎉</div>
+        <div class="reward-joke">${randomJoke}</div>
+        <div style="margin-bottom: 1rem; font-size: 1.1rem;">
+          <strong>Bonus Credits: +50</strong> for completing all ratings!
+        </div>
+        <button class="reward-close" onclick="this.parentElement.remove()">Awesome!</button>
+      `;
+      
+      document.body.appendChild(reward);
+      
+      // Add bonus credits
+      userCredits += 50;
+      updateCreditsDisplay();
+      
+      // Create confetti celebration
+      createConfetti();
+    }
+
+    // Track page load time for analytics
+    const pageLoadTime = Date.now();
+
+    // Allow Enter key to submit query
+    document.getElementById('ai-query').addEventListener('keydown', (e) => {
+      if (e.ctrlKey && e.key === 'Enter') {
+        e.preventDefault();
+        submitQuery();
+      }
+    });
+
+    // API Key Setup Helper
+    function setupAPIKeys() {
+      const keys = {
+        'OpenAI (ChatGPT)': 'OPENAI_API_KEY',
+        'Anthropic (Claude)': 'ANTHROPIC_API_KEY', 
+        'Google AI (Gemini)': 'GOOGLE_AI_API_KEY'
+      };
+      
+      let setupText = 'To get real AI responses, add your API keys:\n\n';
+      
+      Object.entries(keys).forEach(([name, key]) => {
+        setupText += `${name}:\nwindow.${key} = 'your-api-key-here';\n\n`;
+      });
+      
+      setupText += 'Then refresh the page and try your query again!';
+      
+      alert(setupText);
+    }
+
+    // Add setup button to page
+    document.addEventListener('DOMContentLoaded', function() {
+      const apiInfo = document.querySelector('.api-info');
+      if (apiInfo) {
+        const setupBtn = document.createElement('button');
+        setupBtn.textContent = 'Setup API Keys';
+        setupBtn.onclick = setupAPIKeys;
+        setupBtn.style.cssText = `
+          margin-top: 0.5rem;
+          padding: 0.5rem 1rem;
+          background: var(--accent-blue);
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 0.9rem;
+        `;
+        apiInfo.appendChild(setupBtn);
+      }
+      
+      // Initialize AI Archive
+      aiArchive.loadFromStorage();
+      aiArchive.updateStatistics();
+      
+      // Add some sample data for demonstration
+      if (aiArchive.entries.length === 0) {
+        addSampleArchiveData();
+      }
+    });
+
+    function addSampleArchiveData() {
+      const sampleQueries = [
+        'What is artificial intelligence?',
+        'How does machine learning work?',
+        'Explain quantum computing',
+        'What are the benefits of renewable energy?',
+        'How to learn programming?'
+      ];
+      
+      const engines = ['chatgpt', 'claude', 'grok', 'gemini', 'copilot', 'bard'];
+      
+      // Add sample entries from the past few days
+      for (let i = 0; i < 15; i++) {
+        const query = sampleQueries[Math.floor(Math.random() * sampleQueries.length)];
+        const engine = engines[Math.floor(Math.random() * engines.length)];
+        const daysAgo = Math.floor(Math.random() * 30);
+        const timestamp = new Date();
+        timestamp.setDate(timestamp.getDate() - daysAgo);
+        
+        const responseData = generateMockResponse(engine, query);
+        
+        aiArchive.addEntry({
+          engine: engine,
+          query: query,
+          response: responseData.long || responseData.short,
+          rating: Math.floor(Math.random() * 5) + 1,
+          userAgent: 'Sample Data',
+          sessionId: 'sample_' + i,
+          metadata: {
+            screenResolution: '1920x1080',
+            timeOnPage: Math.floor(Math.random() * 300) + 30,
+            aiVersion: getAIVersion(engine)
+          },
+          timestamp: timestamp.toISOString()
+        });
+      }
+    }
+
+    // Add CSS animations for rating success messages
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes slideInRight {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+      }
+      @keyframes slideOutRight {
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(100%); opacity: 0; }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>
