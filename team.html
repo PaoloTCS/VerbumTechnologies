@@ -218,6 +218,258 @@
       border-radius: 15px 15px 0 0;
     }
 
+    /* ---------- Authentication & PDF Styles ---------- */
+    .login-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 300px;
+    }
+
+    .login-box {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      padding: 2.5rem;
+      border-radius: 15px;
+      border: 2px solid var(--accent);
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .login-box h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .login-box p {
+      color: var(--text-light);
+      margin-bottom: 1.5rem;
+    }
+
+    #auth-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    #password-input {
+      padding: 0.75rem 1rem;
+      border: 2px solid var(--neutral-dark);
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+
+    #password-input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .auth-btn {
+      background: var(--gradient-primary);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .auth-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+    }
+
+    .contact-note {
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .contact-note a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .contact-note a:hover {
+      text-decoration: underline;
+    }
+
+    /* Protected Content Styles */
+    .content-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--neutral-dark);
+    }
+
+    .logout-btn {
+      background: var(--error);
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .logout-btn:hover {
+      background: #dc2626;
+      transform: translateY(-1px);
+    }
+
+    .upload-section {
+      background: var(--neutral);
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+    }
+
+    .upload-section h4 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .upload-section p {
+      color: var(--text-light);
+      margin-bottom: 1rem;
+    }
+
+    #pdf-upload {
+      display: block;
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+      border: 2px dashed var(--accent);
+      border-radius: 8px;
+      background: rgba(6, 182, 212, 0.05);
+    }
+
+    .upload-btn {
+      background: var(--gradient-accent);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .upload-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
+    }
+
+    .pdf-container {
+      background: var(--neutral);
+      padding: 1.5rem;
+      border-radius: 10px;
+    }
+
+    .pdf-container h4 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .pdf-list {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .pdf-item {
+      background: white;
+      padding: 1rem;
+      border-radius: 8px;
+      border-left: 4px solid var(--accent);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .pdf-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .pdf-info {
+      flex: 1;
+    }
+
+    .pdf-name {
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0.25rem;
+    }
+
+    .pdf-size {
+      font-size: 0.875rem;
+      color: var(--text-light);
+    }
+
+    .pdf-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .pdf-btn {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      font-size: 0.875rem;
+    }
+
+    .view-btn {
+      background: var(--success);
+      color: white;
+    }
+
+    .view-btn:hover {
+      background: #059669;
+    }
+
+    .delete-btn {
+      background: var(--error);
+      color: white;
+    }
+
+    .delete-btn:hover {
+      background: #dc2626;
+    }
+
+    .no-files {
+      text-align: center;
+      color: var(--text-light);
+      font-style: italic;
+      padding: 2rem;
+    }
+
+    .error-message {
+      background: #fef2f2;
+      color: var(--error);
+      padding: 1rem;
+      border-radius: 8px;
+      border-left: 4px solid var(--error);
+      margin: 1rem 0;
+    }
+
+    .success-message {
+      background: #f0fdf4;
+      color: var(--success);
+      padding: 1rem;
+      border-radius: 8px;
+      border-left: 4px solid var(--success);
+      margin: 1rem 0;
+    }
+
     /* ---------- Responsive Design ---------- */
     @media (max-width: 768px) {
       .container {
@@ -235,6 +487,23 @@
       
       .team-grid {
         grid-template-columns: 1fr;
+      }
+
+      .content-header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+      }
+
+      .pdf-item {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+      }
+
+      .pdf-actions {
+        width: 100%;
+        justify-content: flex-end;
       }
     }
   </style>
@@ -372,7 +641,245 @@
       </p>
     </section>
 
+    <!-- --------------- Protected Research Materials --------------- -->
+    <section class="section" id="protected-section">
+      <h2>Research Materials</h2>
+      <p>Access to our research materials requires authentication. Please contact us to request access credentials.</p>
+      
+      <!-- Login Form -->
+      <div id="login-form" class="login-container">
+        <div class="login-box">
+          <h3>Enter Password</h3>
+          <p>Please enter the password provided to you via email.</p>
+          <form id="auth-form">
+            <input type="password" id="password-input" placeholder="Enter password" required>
+            <button type="submit" class="auth-btn">Access Materials</button>
+          </form>
+          <p class="contact-note">
+            Don't have access? <a href="mailto:paolo@verbumtechnologies.com">Request credentials</a>
+          </p>
+        </div>
+      </div>
+
+      <!-- Protected Content (hidden initially) -->
+      <div id="protected-content" style="display: none;">
+        <div class="content-header">
+          <h3>Research Materials</h3>
+          <button id="logout-btn" class="logout-btn">Logout</button>
+        </div>
+        
+        <!-- PDF Upload Section -->
+        <div class="upload-section">
+          <h4>Upload PDF Documents</h4>
+          <p>Upload research papers, presentations, or other PDF materials.</p>
+          <input type="file" id="pdf-upload" accept=".pdf" multiple>
+          <button id="upload-btn" class="upload-btn">Upload PDFs</button>
+        </div>
+
+        <!-- PDF Display Section -->
+        <div id="pdf-container" class="pdf-container">
+          <h4>Available Documents</h4>
+          <div id="pdf-list" class="pdf-list">
+            <p class="no-files">No documents uploaded yet.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <footer>© 2025 Verbum Technologies. All rights reserved.</footer>
   </div>
+
+  <script>
+    // Authentication and PDF Management
+    const CORRECT_PASSWORD = 'verbum2025!';
+    const STORAGE_KEY = 'verbum_auth';
+    const PDFS_KEY = 'verbum_pdfs';
+
+    // DOM Elements
+    const loginForm = document.getElementById('login-form');
+    const protectedContent = document.getElementById('protected-content');
+    const authForm = document.getElementById('auth-form');
+    const passwordInput = document.getElementById('password-input');
+    const logoutBtn = document.getElementById('logout-btn');
+    const pdfUpload = document.getElementById('pdf-upload');
+    const uploadBtn = document.getElementById('upload-btn');
+    const pdfList = document.getElementById('pdf-list');
+
+    // Check if user is already authenticated
+    function checkAuth() {
+      const isAuthenticated = localStorage.getItem(STORAGE_KEY) === 'true';
+      if (isAuthenticated) {
+        showProtectedContent();
+      }
+    }
+
+    // Handle authentication
+    function handleAuth(event) {
+      event.preventDefault();
+      const password = passwordInput.value.trim();
+      
+      if (password === CORRECT_PASSWORD) {
+        localStorage.setItem(STORAGE_KEY, 'true');
+        showProtectedContent();
+        passwordInput.value = '';
+        showMessage('Authentication successful!', 'success');
+      } else {
+        showMessage('Incorrect password. Please try again.', 'error');
+        passwordInput.value = '';
+        passwordInput.focus();
+      }
+    }
+
+    // Show protected content
+    function showProtectedContent() {
+      loginForm.style.display = 'none';
+      protectedContent.style.display = 'block';
+      loadPDFs();
+    }
+
+    // Handle logout
+    function handleLogout() {
+      localStorage.removeItem(STORAGE_KEY);
+      loginForm.style.display = 'block';
+      protectedContent.style.display = 'none';
+      passwordInput.value = '';
+      showMessage('Logged out successfully.', 'success');
+    }
+
+    // Show message
+    function showMessage(message, type) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `${type}-message`;
+      messageDiv.textContent = message;
+      
+      const section = document.getElementById('protected-section');
+      section.insertBefore(messageDiv, section.firstChild);
+      
+      setTimeout(() => {
+        messageDiv.remove();
+      }, 3000);
+    }
+
+    // Load PDFs from localStorage
+    function loadPDFs() {
+      const pdfs = JSON.parse(localStorage.getItem(PDFS_KEY) || '[]');
+      displayPDFs(pdfs);
+    }
+
+    // Save PDFs to localStorage
+    function savePDFs(pdfs) {
+      localStorage.setItem(PDFS_KEY, JSON.stringify(pdfs));
+    }
+
+    // Display PDFs
+    function displayPDFs(pdfs) {
+      if (pdfs.length === 0) {
+        pdfList.innerHTML = '<p class="no-files">No documents uploaded yet.</p>';
+        return;
+      }
+
+      pdfList.innerHTML = pdfs.map((pdf, index) => `
+        <div class="pdf-item">
+          <div class="pdf-info">
+            <div class="pdf-name">${pdf.name}</div>
+            <div class="pdf-size">${formatFileSize(pdf.size)}</div>
+          </div>
+          <div class="pdf-actions">
+            <button class="pdf-btn view-btn" onclick="viewPDF(${index})">View</button>
+            <button class="pdf-btn delete-btn" onclick="deletePDF(${index})">Delete</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Format file size
+    function formatFileSize(bytes) {
+      if (bytes === 0) return '0 Bytes';
+      const k = 1024;
+      const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+      const i = Math.floor(Math.log(bytes) / Math.log(k));
+      return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    }
+
+    // Handle PDF upload
+    function handlePDFUpload() {
+      const files = pdfUpload.files;
+      if (files.length === 0) {
+        showMessage('Please select PDF files to upload.', 'error');
+        return;
+      }
+
+      const currentPDFs = JSON.parse(localStorage.getItem(PDFS_KEY) || '[]');
+      const newPDFs = [];
+
+      Array.from(files).forEach(file => {
+        if (file.type === 'application/pdf') {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            const pdfData = {
+              name: file.name,
+              size: file.size,
+              data: e.target.result,
+              uploadDate: new Date().toISOString()
+            };
+            newPDFs.push(pdfData);
+            
+            if (newPDFs.length === files.length) {
+              const updatedPDFs = [...currentPDFs, ...newPDFs];
+              savePDFs(updatedPDFs);
+              displayPDFs(updatedPDFs);
+              showMessage(`${files.length} PDF(s) uploaded successfully!`, 'success');
+              pdfUpload.value = '';
+            }
+          };
+          reader.readAsDataURL(file);
+        } else {
+          showMessage(`${file.name} is not a PDF file.`, 'error');
+        }
+      });
+    }
+
+    // View PDF
+    function viewPDF(index) {
+      const pdfs = JSON.parse(localStorage.getItem(PDFS_KEY) || '[]');
+      const pdf = pdfs[index];
+      if (pdf) {
+        const newWindow = window.open();
+        newWindow.document.write(`
+          <html>
+            <head>
+              <title>${pdf.name}</title>
+              <style>
+                body { margin: 0; padding: 0; }
+                embed { width: 100%; height: 100vh; }
+              </style>
+            </head>
+            <body>
+              <embed src="${pdf.data}" type="application/pdf" />
+            </body>
+          </html>
+        `);
+      }
+    }
+
+    // Delete PDF
+    function deletePDF(index) {
+      if (confirm('Are you sure you want to delete this PDF?')) {
+        const pdfs = JSON.parse(localStorage.getItem(PDFS_KEY) || '[]');
+        pdfs.splice(index, 1);
+        savePDFs(pdfs);
+        displayPDFs(pdfs);
+        showMessage('PDF deleted successfully.', 'success');
+      }
+    }
+
+    // Event Listeners
+    authForm.addEventListener('submit', handleAuth);
+    logoutBtn.addEventListener('click', handleLogout);
+    uploadBtn.addEventListener('click', handlePDFUpload);
+
+    // Initialize
+    checkAuth();
+  </script>
 </body>
 </html> 
