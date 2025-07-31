@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel | VerbumTechnologies</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent: #06b6d4;
+      --accent-light: #22d3ee;
+      --neutral: #f8fafc;
+      --neutral-dark: #e2e8f0;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --error: #ef4444;
+      --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      --gradient-accent: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--neutral);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    /* ---------- Header ---------- */
+    header {
+      text-align: center;
+      padding: 2rem 0;
+      background: var(--gradient-primary);
+      color: white;
+      margin-bottom: 2rem;
+      border-radius: 0 0 20px 20px;
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .tagline {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    /* ---------- Login Form ---------- */
+    .login-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 60vh;
+    }
+
+    .login-box {
+      background: white;
+      padding: 3rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .login-box h2 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .login-box p {
+      color: var(--text-light);
+      margin-bottom: 2rem;
+    }
+
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .login-input {
+      padding: 0.75rem 1rem;
+      border: 2px solid var(--neutral-dark);
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+
+    .login-input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .login-btn {
+      background: var(--gradient-primary);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .login-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+    }
+
+    .error-message {
+      background: #fef2f2;
+      color: var(--error);
+      padding: 1rem;
+      border-radius: 8px;
+      border-left: 4px solid var(--error);
+      margin: 1rem 0;
+    }
+
+    /* ---------- Admin Dashboard ---------- */
+    .admin-dashboard {
+      display: none;
+    }
+
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--neutral-dark);
+    }
+
+    .logout-btn {
+      background: var(--error);
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .logout-btn:hover {
+      background: #dc2626;
+      transform: translateY(-1px);
+    }
+
+    .admin-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .admin-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .admin-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .admin-card h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    .admin-card p {
+      color: var(--text-light);
+      margin-bottom: 1.5rem;
+    }
+
+    .admin-btn {
+      background: var(--gradient-accent);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .admin-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
+    }
+
+    /* ---------- Content Management ---------- */
+    .content-section {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+
+    .content-section h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 2px solid var(--neutral-dark);
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .success-message {
+      background: #f0fdf4;
+      color: var(--success);
+      padding: 1rem;
+      border-radius: 8px;
+      border-left: 4px solid var(--success);
+      margin: 1rem 0;
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      margin-top: 4rem;
+      padding: 2rem 0;
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--text-light);
+      background: var(--neutral-dark);
+      border-radius: 15px 15px 0 0;
+    }
+
+    /* ---------- Responsive Design ---------- */
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem;
+      }
+      
+      .admin-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .dashboard-header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">VerbumTechnologies</div>
+      <div class="tagline">Admin Panel</div>
+    </header>
+
+    <!-- --------------- Login Section --------------- -->
+    <div id="login-section" class="login-container">
+      <div class="login-box">
+        <h2>Admin Login</h2>
+        <p>Enter your credentials to access the admin panel.</p>
+        
+        <form id="login-form" class="login-form">
+          <input type="password" id="admin-password" class="login-input" placeholder="Enter admin password" required>
+          <button type="submit" class="login-btn">Login</button>
+        </form>
+        
+        <div id="login-error" class="error-message" style="display: none;"></div>
+      </div>
+    </div>
+
+    <!-- --------------- Admin Dashboard --------------- -->
+    <div id="admin-dashboard" class="admin-dashboard">
+      <div class="dashboard-header">
+        <h2>Admin Dashboard</h2>
+        <button id="logout-btn" class="logout-btn">Logout</button>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="admin-grid">
+        <div class="admin-card">
+          <h3>Site Management</h3>
+          <p>Update website content, manage pages, and control site settings.</p>
+          <button class="admin-btn" onclick="showContentManagement()">Manage Content</button>
+        </div>
+        
+        <div class="admin-card">
+          <h3>User Access</h3>
+          <p>Manage user permissions and access to protected content.</p>
+          <button class="admin-btn" onclick="showUserManagement()">Manage Users</button>
+        </div>
+        
+        <div class="admin-card">
+          <h3>Analytics</h3>
+          <p>View site analytics and visitor statistics.</p>
+          <button class="admin-btn" onclick="showAnalytics()">View Analytics</button>
+        </div>
+        
+        <div class="admin-card">
+          <h3>Backup & Security</h3>
+          <p>Manage site backups and security settings.</p>
+          <button class="admin-btn" onclick="showSecurity()">Security Settings</button>
+        </div>
+      </div>
+
+      <!-- Content Management Section -->
+      <div id="content-management" class="content-section" style="display: none;">
+        <h3>Content Management</h3>
+        <form id="content-form">
+          <div class="form-group">
+            <label for="page-select">Select Page:</label>
+            <select id="page-select" class="login-input">
+              <option value="index">Home Page</option>
+              <option value="team">Team Page</option>
+              <option value="papers">Papers Section</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="content-title">Title:</label>
+            <input type="text" id="content-title" class="login-input" placeholder="Enter title">
+          </div>
+          
+          <div class="form-group">
+            <label for="content-body">Content:</label>
+            <textarea id="content-body" class="login-input" placeholder="Enter content"></textarea>
+          </div>
+          
+          <button type="submit" class="admin-btn">Update Content</button>
+        </form>
+        <div id="content-success" class="success-message" style="display: none;"></div>
+      </div>
+
+      <!-- User Management Section -->
+      <div id="user-management" class="content-section" style="display: none;">
+        <h3>User Management</h3>
+        <div class="form-group">
+          <label for="new-password">New Public Password:</label>
+          <input type="text" id="new-password" class="login-input" placeholder="Enter new password for public access">
+        </div>
+        <button onclick="updatePublicPassword()" class="admin-btn">Update Public Password</button>
+        <div id="password-success" class="success-message" style="display: none;"></div>
+      </div>
+
+      <!-- Analytics Section -->
+      <div id="analytics" class="content-section" style="display: none;">
+        <h3>Site Analytics</h3>
+        <p>Analytics dashboard will be implemented here.</p>
+        <p><strong>Coming Soon:</strong> Visitor statistics, page views, and engagement metrics.</p>
+      </div>
+
+      <!-- Security Section -->
+      <div id="security" class="content-section" style="display: none;">
+        <h3>Security Settings</h3>
+        <p>Security management will be implemented here.</p>
+        <p><strong>Coming Soon:</strong> Backup management, security logs, and access controls.</p>
+      </div>
+    </div>
+
+    <footer>© 2025 Verbum Technologies. All rights reserved.</footer>
+  </div>
+
+  <script>
+    // Admin authentication
+    const ADMIN_PASSWORD = 'Haydn+The_Creation*1949';
+    const ADMIN_STORAGE_KEY = 'verbum_admin_auth';
+
+    // DOM Elements
+    const loginSection = document.getElementById('login-section');
+    const adminDashboard = document.getElementById('admin-dashboard');
+    const loginForm = document.getElementById('login-form');
+    const adminPassword = document.getElementById('admin-password');
+    const loginError = document.getElementById('login-error');
+    const logoutBtn = document.getElementById('logout-btn');
+
+    // Check if admin is already authenticated
+    function checkAdminAuth() {
+      const isAuthenticated = localStorage.getItem(ADMIN_STORAGE_KEY) === 'true';
+      if (isAuthenticated) {
+        showAdminDashboard();
+      }
+    }
+
+    // Handle admin login
+    function handleAdminLogin(event) {
+      event.preventDefault();
+      const password = adminPassword.value.trim();
+      
+      if (password === ADMIN_PASSWORD) {
+        localStorage.setItem(ADMIN_STORAGE_KEY, 'true');
+        showAdminDashboard();
+        adminPassword.value = '';
+        showMessage('Admin login successful!', 'success');
+      } else {
+        showMessage('Incorrect admin password.', 'error');
+        adminPassword.value = '';
+        adminPassword.focus();
+      }
+    }
+
+    // Show admin dashboard
+    function showAdminDashboard() {
+      loginSection.style.display = 'none';
+      adminDashboard.style.display = 'block';
+    }
+
+    // Handle logout
+    function handleLogout() {
+      localStorage.removeItem(ADMIN_STORAGE_KEY);
+      loginSection.style.display = 'flex';
+      adminDashboard.style.display = 'none';
+      adminPassword.value = '';
+      showMessage('Logged out successfully.', 'success');
+    }
+
+    // Show message
+    function showMessage(message, type) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `${type}-message`;
+      messageDiv.textContent = message;
+      
+      const container = document.querySelector('.container');
+      container.insertBefore(messageDiv, container.firstChild);
+      
+      setTimeout(() => {
+        messageDiv.remove();
+      }, 3000);
+    }
+
+    // Content management functions
+    function showContentManagement() {
+      hideAllSections();
+      document.getElementById('content-management').style.display = 'block';
+    }
+
+    function showUserManagement() {
+      hideAllSections();
+      document.getElementById('user-management').style.display = 'block';
+    }
+
+    function showAnalytics() {
+      hideAllSections();
+      document.getElementById('analytics').style.display = 'block';
+    }
+
+    function showSecurity() {
+      hideAllSections();
+      document.getElementById('security').style.display = 'block';
+    }
+
+    function hideAllSections() {
+      const sections = ['content-management', 'user-management', 'analytics', 'security'];
+      sections.forEach(id => {
+        document.getElementById(id).style.display = 'none';
+      });
+    }
+
+    // Update public password
+    function updatePublicPassword() {
+      const newPassword = document.getElementById('new-password').value.trim();
+      if (newPassword) {
+        // In a real implementation, this would update the password on the server
+        localStorage.setItem('verbum_public_password', newPassword);
+        document.getElementById('password-success').style.display = 'block';
+        document.getElementById('password-success').textContent = 'Public password updated successfully!';
+        document.getElementById('new-password').value = '';
+        
+        setTimeout(() => {
+          document.getElementById('password-success').style.display = 'none';
+        }, 3000);
+      }
+    }
+
+    // Handle content form submission
+    document.getElementById('content-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const page = document.getElementById('page-select').value;
+      const title = document.getElementById('content-title').value;
+      const content = document.getElementById('content-body').value;
+      
+      // In a real implementation, this would save to a database
+      console.log('Content update:', { page, title, content });
+      
+      document.getElementById('content-success').style.display = 'block';
+      document.getElementById('content-success').textContent = 'Content updated successfully!';
+      
+      setTimeout(() => {
+        document.getElementById('content-success').style.display = 'none';
+      }, 3000);
+    });
+
+    // Event Listeners
+    loginForm.addEventListener('submit', handleAdminLogin);
+    logoutBtn.addEventListener('click', handleLogout);
+
+    // Initialize
+    checkAdminAuth();
+  </script>
+</body>
+</html> 

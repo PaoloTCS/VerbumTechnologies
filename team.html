@@ -655,6 +655,7 @@
             <input type="password" id="password-input" placeholder="Enter password" required>
             <button type="submit" class="auth-btn">Access Materials</button>
           </form>
+          <button onclick="testPassword()" style="margin-top: 1rem; background: #f59e0b; color: white; padding: 0.5rem 1rem; border: none; border-radius: 6px; cursor: pointer;">Test Password</button>
           <p class="contact-note">
             Don't have access? <a href="mailto:paolo@verbumtechnologies.com">Request credentials</a>
           </p>
@@ -691,7 +692,7 @@
 
   <script>
     // Authentication and PDF Management
-    const CORRECT_PASSWORD = 'verbum2025!';
+    const CORRECT_PASSWORD = 'Verbum2025!';
     const STORAGE_KEY = 'verbum_auth';
     const PDFS_KEY = 'verbum_pdfs';
 
@@ -718,12 +719,23 @@
       event.preventDefault();
       const password = passwordInput.value.trim();
       
+      console.log('Password entered:', password);
+      console.log('Expected password:', CORRECT_PASSWORD);
+      console.log('Password match:', password === CORRECT_PASSWORD);
+      console.log('DOM elements found:', {
+        loginForm: !!loginForm,
+        protectedContent: !!protectedContent,
+        passwordInput: !!passwordInput
+      });
+      
       if (password === CORRECT_PASSWORD) {
+        console.log('Password correct! Showing protected content...');
         localStorage.setItem(STORAGE_KEY, 'true');
         showProtectedContent();
         passwordInput.value = '';
         showMessage('Authentication successful!', 'success');
       } else {
+        console.log('Password incorrect!');
         showMessage('Incorrect password. Please try again.', 'error');
         passwordInput.value = '';
         passwordInput.focus();
@@ -732,8 +744,16 @@
 
     // Show protected content
     function showProtectedContent() {
+      console.log('showProtectedContent called');
+      console.log('loginForm display before:', loginForm.style.display);
+      console.log('protectedContent display before:', protectedContent.style.display);
+      
       loginForm.style.display = 'none';
       protectedContent.style.display = 'block';
+      
+      console.log('loginForm display after:', loginForm.style.display);
+      console.log('protectedContent display after:', protectedContent.style.display);
+      
       loadPDFs();
     }
 
@@ -871,6 +891,21 @@
         displayPDFs(pdfs);
         showMessage('PDF deleted successfully.', 'success');
       }
+    }
+
+    // Test password function
+    function testPassword() {
+      console.log('Testing password functionality...');
+      console.log('CORRECT_PASSWORD constant:', CORRECT_PASSWORD);
+      console.log('Password length:', CORRECT_PASSWORD.length);
+      console.log('Password characters:', Array.from(CORRECT_PASSWORD).map(c => c.charCodeAt(0)));
+      
+      // Test with the exact password
+      const testPassword = 'verbum2025!';
+      console.log('Test password:', testPassword);
+      console.log('Test password length:', testPassword.length);
+      console.log('Test password characters:', Array.from(testPassword).map(c => c.charCodeAt(0)));
+      console.log('Direct comparison:', testPassword === CORRECT_PASSWORD);
     }
 
     // Event Listeners
